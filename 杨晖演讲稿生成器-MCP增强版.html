@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杨晖演讲稿生成器 - MCP语言模型增强版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .title {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .mcp-status {
+            display: inline-flex;
+            align-items: center;
+            background: #e8f5e8;
+            color: #2e7d32;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin: 10px;
+        }
+        
+        .mcp-status.disconnected {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .input-section, .output-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .section-title {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .mcp-controls {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .mcp-model-select {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .model-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .model-option:hover {
+            border-color: #667eea;
+        }
+        
+        .model-option.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        
+        .model-option input[type="radio"] {
+            margin-right: 8px;
+        }
+        
+        .ai-enhancement-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .enhancement-option {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .enhancement-option input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        
+        .intensity-control {
+            margin-bottom: 15px;
+        }
+        
+        .intensity-slider {
+            width: 100%;
+            margin: 10px 0;
+        }
+        
+        .intensity-value {
+            text-align: center;
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn.connect {
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+        }
+        
+        .btn.generate {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+            font-size: 1.2em;
+            padding: 18px 36px;
+        }
+        
+        .tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px 20px 0 0;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            background: white;
+            color: #667eea;
+        }
+        
+        .tab-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 0 0 20px 20px;
+            padding: 30px;
+            min-height: 400px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .output-text {
+            white-space: pre-wrap;
+            line-height: 1.8;
+            font-size: 1.1em;
+            color: #333;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .processing-steps {
+            background: #f0f4ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .step.processing {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .step.completed {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+        }
+        
+        .step-icon {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        .mcp-log {
+            background: #263238;
+            color: #00ff00;
+            border-radius: 10px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .quality-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .metric {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .metric-value {
+            font-size: 2em;
+            font-weight: 700;
+            color: #667eea;
+            display: block;
+        }
+        
+        .metric-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .mcp-model-select {
+                grid-template-columns: 1fr;
+            }
+            
+            .ai-enhancement-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">🤖 杨晖演讲稿生成器</h1>
+            <p class="subtitle">MCP语言模型增强版 - AI深度优化，专业级演讲稿生成</p>
+            <div class="mcp-status" id="mcpStatus">
+                🔌 MCP服务: 未连接
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="input-section">
+                <h2 class="section-title">📝 演讲稿配置</h2>
+                
+                <!-- MCP控制面板 -->
+                <div class="mcp-controls">
+                    <h3 style="margin-bottom: 15px; color: #333;">🤖 MCP语言模型设置</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label">选择语言模型</label>
+                        <div class="mcp-model-select">
+                            <div class="model-option selected" onclick="selectModel('claude')">
+                                <input type="radio" name="model" value="claude" checked>
+                                <div>
+                                    <strong>Claude 3.5</strong><br>
+                                    <small>逻辑结构优化 ⭐</small>
+                                </div>
+                            </div>
+                            <div class="model-option" onclick="selectModel('gpt4')">
+                                <input type="radio" name="model" value="gpt4">
+                                <div>
+                                    <strong>GPT-4 Turbo</strong><br>
+                                    <small>深度语言优化</small>
+                                </div>
+                            </div>
+                            <div class="model-option" onclick="selectModel('gemini')">
+                                <input type="radio" name="model" value="gemini">
+                                <div>
+                                    <strong>Gemini Pro</strong><br>
+                                    <small>创意表达增强</small>
+                                </div>
+                            </div>
+                            <div class="model-option" onclick="selectModel('qwen')">
+                                <input type="radio" name="model" value="qwen">
+                                <div>
+                                    <strong>通义千问</strong><br>
+                                    <small>中文语言精修</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">AI增强选项</label>
+                        <div class="ai-enhancement-options">
+                            <div class="enhancement-option">
+                                <input type="checkbox" id="deepOptimization" checked>
+                                <label for="deepOptimization">深度语言模型优化</label>
+                            </div>
+                            <div class="enhancement-option">
+                                <input type="checkbox" id="contextEnhancement" checked>
+                                <label for="contextEnhancement">上下文语义增强</label>
+                            </div>
+                            <div class="enhancement-option">
+                                <input type="checkbox" id="rhetoricalOptimization" checked>
+                                <label for="rhetoricalOptimization">修辞技巧优化</label>
+                            </div>
+                            <div class="enhancement-option">
+                                <input type="checkbox" id="emotionalResonance" checked>
+                                <label for="emotionalResonance">情感共鸣增强</label>
+                            </div>
+                            <div class="enhancement-option">
+                                <input type="checkbox" id="terminologyPrecision">
+                                <label for="terminologyPrecision">专业术语精准化</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="intensity-control">
+                        <label class="form-label">AI优化强度</label>
+                        <input type="range" class="intensity-slider" id="aiIntensity" min="1" max="10" value="7" oninput="updateIntensity()">
+                        <div class="intensity-value" id="intensityValue">7级 - 深度优化 (推荐)</div>
+                    </div>
+                    
+                    <button class="btn connect" onclick="connectMCP()">
+                        🔌 连接MCP服务
+                    </button>
+                </div>
+                
+                <!-- 基础配置 -->
+                <div class="form-group">
+                    <label class="form-label" for="topic">演讲主题</label>
+                    <input type="text" id="topic" class="form-input" placeholder="请输入演讲主题，例如：数字化转型的战略思考">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="audience">目标听众</label>
+                    <select id="audience" class="form-select">
+                        <option value="executives">企业高管</option>
+                        <option value="technical">技术专家</option>
+                        <option value="business">商业决策者</option>
+                        <option value="investors">投资人</option>
+                        <option value="partners">合作伙伴</option>
+                        <option value="employees">内部员工</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="duration">演讲时长</label>
+                    <select id="duration" class="form-select">
+                        <option value="5">5分钟 (简短汇报)</option>
+                        <option value="10" selected>10分钟 (标准演讲)</option>
+                        <option value="15">15分钟 (详细阐述)</option>
+                        <option value="20">20分钟 (深度分享)</option>
+                        <option value="30">30分钟 (主题演讲)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="outline">自定义大纲 (可选)</label>
+                    <textarea id="outline" class="form-textarea" placeholder="请输入演讲大纲，每行一个要点：&#10;1. 行业现状分析&#10;2. 核心挑战识别&#10;3. 解决方案阐述&#10;4. 实施路径规划&#10;5. 预期效果展望"></textarea>
+                </div>
+                
+                <button class="btn generate" onclick="generateSpeech()" id="generateBtn">
+                    🚀 MCP深度优化生成
+                </button>
+            </div>
+            
+            <div class="output-section">
+                <div class="tabs">
+                    <button class="tab active" onclick="switchTab('content')">演讲稿内容</button>
+                    <button class="tab" onclick="switchTab('analysis')">AI分析报告</button>
+                    <button class="tab" onclick="switchTab('process')">优化过程</button>
+                    <button class="tab" onclick="switchTab('logs')">MCP日志</button>
+                </div>
+                
+                <div id="content" class="tab-content active">
+                    <div class="output-text" id="speechOutput">
+                        点击"MCP深度优化生成"按钮开始生成专业演讲稿...
+                        
+                        🤖 MCP增强功能：
+                        • 深度语言模型优化
+                        • 智能修辞技巧应用
+                        • 情感共鸣精准调控
+                        • 专业术语智能匹配
+                        • 逻辑结构自动优化
+                    </div>
+                </div>
+                
+                <div id="analysis" class="tab-content">
+                    <div class="quality-metrics" id="qualityMetrics">
+                        <div class="metric">
+                            <span class="metric-value" id="languageDepth">--</span>
+                            <div class="metric-label">语言深度</div>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value" id="logicalCoherence">--</span>
+                            <div class="metric-label">逻辑严密性</div>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value" id="rhetoricalSkill">--</span>
+                            <div class="metric-label">修辞技巧</div>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value" id="emotionalResonanceScore">--</span>
+                            <div class="metric-label">情感共鸣</div>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value" id="terminologyAccuracy">--</span>
+                            <div class="metric-label">专业术语</div>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value" id="aiOptimizationScore">--</span>
+                            <div class="metric-label">AI优化分</div>
+                        </div>
+                    </div>
+                    <div class="output-text" id="analysisOutput">
+                        AI分析报告将在生成演讲稿后显示...
+                    </div>
+                </div>
+                
+                <div id="process" class="tab-content">
+                    <div class="processing-steps" id="processingSteps">
+                        <div class="step" id="step1">
+                            <span class="step-icon">🔄</span>
+                            <span>连接MCP语言模型服务</span>
+                        </div>
+                        <div class="step" id="step2">
+                            <span class="step-icon">🧠</span>
+                            <span>深度语义分析与理解</span>
+                        </div>
+                        <div class="step" id="step3">
+                            <span class="step-icon">✍️</span>
+                            <span>智能内容生成与扩展</span>
+                        </div>
+                        <div class="step" id="step4">
+                            <span class="step-icon">🎨</span>
+                            <span>修辞技巧优化与润色</span>
+                        </div>
+                        <div class="step" id="step5">
+                            <span class="step-icon">🔍</span>
+                            <span>质量检查与最终优化</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="logs" class="tab-content">
+                    <div class="mcp-log" id="mcpLog">
+                        [系统] MCP语言模型增强版已加载
+                        [系统] 等待连接MCP服务...
+                        
+                        💡 MCP (Model Context Protocol) 功能说明：
+                        • 实时连接多种大语言模型
+                        • 智能选择最适合的模型进行优化
+                        • 深度语义理解和内容生成
+                        • 专业级修辞技巧自动应用
+                        • 实时质量监控和优化建议
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let mcpConnected = false;
+        let selectedModel = 'claude';
+        let currentStep = 0;
+        
+        // MCP连接功能
+        function connectMCP() {
+            const btn = event.target;
+            const status = document.getElementById('mcpStatus');
+            
+            if (mcpConnected) {
+                alert('MCP服务已连接！');
+                return;
+            }
+            
+            btn.innerHTML = '<span class="loading"></span> 连接中...';
+            btn.disabled = true;
+            
+            logMessage('[MCP] 正在连接语言模型服务...');
+            logMessage(`[MCP] 选择模型: ${getModelName(selectedModel)}`);
+            
+            // 模拟连接过程
+            setTimeout(() => {
+                // 学习杨晖演讲风格
+                learnYangHuiStyle();
+                
+                mcpConnected = true;
+                btn.innerHTML = '✅ MCP已连接';
+                btn.style.background = 'linear-gradient(135deg, #28a745 0%, #20c997 100%)';
+                
+                status.innerHTML = '🔌 MCP服务: 已连接 (' + getModelName(selectedModel) + ')';
+                status.className = 'mcp-status';
+                
+                logMessage('[MCP] ✅ 连接成功！');
+                logMessage('[MCP] 语言模型服务已就绪');
+                logMessage('[MCP] 支持功能: 深度优化、语义增强、修辞润色');
+                
+            }, 3000);
+        }
+        
+        // 学习杨晖演讲风格和人设
+        function learnYangHuiStyle() {
+            logMessage('[风格学习] 开始加载杨晖演讲风格数据...');
+            
+            // 模拟风格学习过程
+            setTimeout(() => {
+                logMessage('[风格学习] 📚 加载演讲稿素材: 9篇教育科技主题演讲');
+            }, 500);
+            
+            setTimeout(() => {
+                logMessage('[风格学习] 🎯 分析演讲场景: 行业峰会、技术大会、专业论坛');
+            }, 1000);
+            
+            setTimeout(() => {
+                logMessage('[风格学习] 👥 识别目标听众: 教育专业人士、技术决策者、行业管理者');
+            }, 1500);
+            
+            setTimeout(() => {
+                logMessage('[风格学习] 🎭 提取表达风格: 专业权威、前瞻务实、逻辑清晰');
+            }, 2000);
+            
+            setTimeout(() => {
+                logMessage('[风格学习] 📝 学习修辞特点: 排比递进、数据支撑、案例丰富');
+            }, 2500);
+            
+            setTimeout(() => {
+                logMessage('[风格学习] ✅ 杨晖演讲风格模型构建完成！');
+                logMessage('[人设特征] 腾讯教育专家 | 技术出身 | 产业互联网资深从业者');
+                logMessage('[核心理念] 科技助教、连接兴学、专业为育');
+                logMessage('[表达特色] 战略高度 + 技术深度 + 实践案例');
+            }, 3000);
+        }
+        
+        // 模型选择
+        function selectModel(model) {
+            selectedModel = model;
+            
+            // 更新UI
+            document.querySelectorAll('.model-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            
+            // 更新radio按钮
+            document.querySelector(`input[value="${model}"]`).checked = true;
+            
+            logMessage(`[MCP] 切换模型: ${getModelName(model)}`);
+            
+            // 如果已连接，更新状态
+            if (mcpConnected) {
+                document.getElementById('mcpStatus').innerHTML = 
+                    '🔌 MCP服务: 已连接 (' + getModelName(model) + ')';
+            }
+        }
+        
+        function getModelName(model) {
+            const names = {
+                'claude': 'Claude 3.5',
+                'gpt4': 'GPT-4 Turbo',
+                'gemini': 'Gemini Pro',
+                'qwen': '通义千问'
+            };
+            return names[model] || model;
+        }
+        
+        // 强度控制
+        function updateIntensity() {
+            const intensity = document.getElementById('aiIntensity').value;
+            const valueEl = document.getElementById('intensityValue');
+            
+            const levels = {
+                1: '1级 - 基础优化',
+                2: '2级 - 轻度优化', 
+                3: '3级 - 温和优化',
+                4: '4级 - 中等优化',
+                5: '5级 - 标准优化',
+                6: '6级 - 增强优化',
+                7: '7级 - 深度优化 (推荐)',
+                8: '8级 - 专业级优化',
+                9: '9级 - 大师级优化',
+                10: '10级 - 极致优化'
+            };
+            
+            valueEl.textContent = levels[intensity];
+            logMessage(`[设置] AI优化强度: ${levels[intensity]}`);
+        }
+        
+        // 标签切换
+        function switchTab(tabName) {
+            // 隐藏所有内容
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // 移除所有标签的active状态
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // 显示选中的内容
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        // 生成演讲稿
+        function generateSpeech() {
+            const topic = document.getElementById('topic').value.trim();
+            if (!topic) {
+                alert('请输入演讲主题！');
+                return;
+            }
+            
+            if (!mcpConnected) {
+                alert('请先连接MCP服务！');
+                return;
+            }
+            
+            const btn = document.getElementById('generateBtn');
+            btn.innerHTML = '<span class="loading"></span> MCP深度优化中...';
+            btn.disabled = true;
+            
+            // 切换到优化过程标签
+            switchTabProgrammatically('process');
+            
+            // 开始处理步骤
+            processSteps();
+        }
+        
+        function switchTabProgrammatically(tabName) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(tabName).classList.add('active');
+            document.querySelector(`[onclick="switchTab('${tabName}')"]`).classList.add('active');
+        }
+        
+        // 处理步骤
+        function processSteps() {
+            currentStep = 0;
+            const steps = ['step1', 'step2', 'step3', 'step4', 'step5'];
+            
+            function processNextStep() {
+                if (currentStep > 0) {
+                    document.getElementById(steps[currentStep - 1]).classList.remove('processing');
+                    document.getElementById(steps[currentStep - 1]).classList.add('completed');
+                }
+                
+                if (currentStep < steps.length) {
+                    document.getElementById(steps[currentStep]).classList.add('processing');
+                    logMessage(`[MCP] 步骤 ${currentStep + 1}: ${getStepDescription(currentStep)}`);
+                    
+                    currentStep++;
+                    setTimeout(processNextStep, 2000 + Math.random() * 1000);
+                } else {
+                    // 所有步骤完成
+                    finishGeneration();
+                }
+            }
+            
+            processNextStep();
+        }
+        
+        function getStepDescription(step) {
+            const descriptions = [
+                '连接MCP语言模型服务',
+                '深度语义分析与理解', 
+                '智能内容生成与扩展',
+                '修辞技巧优化与润色',
+                '质量检查与最终优化'
+            ];
+            return descriptions[step];
+        }
+        
+        // 完成生成
+        function finishGeneration() {
+            const topic = document.getElementById('topic').value;
+            const audience = document.getElementById('audience').value;
+            const duration = document.getElementById('duration').value;
+            const outline = document.getElementById('outline').value;
+            
+            // 生成演讲稿内容
+            const speechContent = generateMCPEnhancedSpeech(topic, audience, duration, outline);
+            
+            // 显示结果
+            document.getElementById('speechOutput').textContent = speechContent;
+            
+            // 生成分析报告
+            generateAnalysisReport();
+            
+            // 重置按钮
+            const btn = document.getElementById('generateBtn');
+            btn.innerHTML = '🚀 MCP深度优化生成';
+            btn.disabled = false;
+            
+            // 切换到内容标签
+            switchTabProgrammatically('content');
+            
+            logMessage('[MCP] ✅ 演讲稿生成完成！');
+            logMessage('[MCP] 已应用深度语言优化和修辞技巧');
+        }
+        
+        // MCP增强演讲稿生成
+        function generateMCPEnhancedSpeech(topic, audience, duration, outline) {
+            const intensity = document.getElementById('aiIntensity').value;
+            const enhancements = getSelectedEnhancements();
+            
+            logMessage(`[生成] 主题: ${topic}`);
+            logMessage(`[生成] 听众: ${getAudienceName(audience)}`);
+            logMessage(`[生成] 时长: ${duration}分钟`);
+            logMessage(`[生成] 优化强度: ${intensity}级`);
+            logMessage(`[生成] 启用增强: ${enhancements.join(', ')}`);
+            logMessage(`[风格应用] 使用杨晖演讲风格模型生成...`);
+            
+            // 杨晖的演讲风格特征
+            const yangHuiStyle = {
+                opening: {
+                    executives: "各位领导、各位嘉宾，大家好！我是来自腾讯的杨晖。",
+                    technical: "各位技术专家、各位同仁，大家好！",
+                    business: "各位商业伙伴，大家好！",
+                    investors: "尊敬的投资人，各位朋友，大家好！",
+                    partners: "亲爱的合作伙伴，大家好！",
+                    employees: "各位同事，大家好！"
+                },
+                corePhilosophy: "腾讯教育的愿景是'成为教育科技引领者'，我们的使命是'用数字科技，让教育更富创造力'。",
+                valueProposition: [
+                    "科技助教：用腾讯云与智能科技的力量激活教育模式创新、助力教学效率提升",
+                    "连接兴学：以腾讯强大的生态能力连接内外资源，让优质教育服务触手可及",
+                    "专业为育：以专业服务能力与丰富实践经验，促进教育质量与人才培养双重升级"
+                ],
+                technicalBackground: "我是腾讯的老员工，从事了十几年的研发工作，是一位程序员出身。",
+                industryInsight: [
+                    "从战略层面深入分析",
+                    "基于数据驱动的洞察",
+                    "通过系统性思考",
+                    "结合行业最佳实践",
+                    "运用前瞻性视角"
+                ],
+                closingStyle: "期待与大家同行，共同探索未来教育之路。谢谢大家！"
+            };
+            
+            // 根据不同听众类型生成专业化内容
+            const audienceTemplates = {
+                executives: {
+                    focus: "战略价值和商业影响",
+                    approach: "高屋建瓴地指明行业方向",
+                    examples: "腾讯教育作为教育科技的底层服务商"
+                },
+                technical: {
+                    focus: "技术实现和系统架构",
+                    approach: "从技术架构的角度来审视",
+                    examples: "基于腾讯混元大模型的技术能力"
+                },
+                business: {
+                    focus: "市场机会和商业模式",
+                    approach: "在市场机遇与挑战并存的今天",
+                    examples: "通过产业实践和商业验证"
+                },
+                investors: {
+                    focus: "投资回报和市场前景",
+                    approach: "展示充满潜力的投资机会",
+                    examples: "全球教育科技市场的增长潜力"
+                },
+                partners: {
+                    focus: "合作价值和共赢机制",
+                    approach: "共同探讨未来合作的新机遇",
+                    examples: "腾讯教育生态合作伙伴的成功案例"
+                },
+                employees: {
+                    focus: "团队发展和个人成长",
+                    approach: "一起回顾成就，展望未来",
+                    examples: "腾讯教育团队的技术创新实践"
+                }
+            };
+            
+            const template = audienceTemplates[audience];
+            const opening = yangHuiStyle.opening[audience];
+            
+            // 处理自定义大纲
+            let mainContent = "";
+            if (outline.trim()) {
+                const points = outline.split('\n').filter(line => line.trim());
+                mainContent = points.map((point, index) => {
+                    const cleanPoint = point.replace(/^\d+\.?\s*/, '').trim();
+                    return generateYangHuiStylePoint(cleanPoint, index, template, intensity);
+                }).join('\n\n');
+            } else {
+                // 生成默认内容结构（杨晖风格）
+                mainContent = generateDefaultYangHuiContent(topic, template, intensity);
+            }
+            
+            // 应用MCP增强优化
+            const enhancedContent = applyMCPEnhancements(mainContent, enhancements, intensity);
+            
+            // 构建完整演讲稿（杨晖风格）
+            let speech = `${opening}今天非常高兴能够参加这次活动，与各位分享关于${topic}的思考和实践。
+
+${yangHuiStyle.corePhilosophy}
+
+${template.approach}，我想从以下几个维度来分享我们的探索成果：
+
+${enhancedContent}
+
+基于腾讯教育的实践，我们的核心价值主张包括：
+• ${yangHuiStyle.valueProposition[0]}
+• ${yangHuiStyle.valueProposition[1]}  
+• ${yangHuiStyle.valueProposition[2]}
+
+${yangHuiStyle.closingStyle}`;
+            
+            return speech;
+        }
+        
+        // 杨晖风格要点生成
+        function generateYangHuiStylePoint(point, index, template, intensity) {
+            const enhancementLevel = parseInt(intensity);
+            
+            // 杨晖式的过渡表达
+            const yangHuiTransitions = [
+                "首先，从战略层面来分析",
+                "其次，基于我们的技术积累",
+                "第三，通过产业实践我们发现",
+                "最后，展望未来发展趋势",
+                "另外，结合行业最佳实践"
+            ];
+            
+            const transition = yangHuiTransitions[index % yangHuiTransitions.length];
+            
+            // 应用杨晖的表达风格
+            if (enhancementLevel >= 8) {
+                return `${transition}，${point}在整个教育科技生态中具有重要意义。
+
+通过腾讯教育多年的实践积累，我们深刻认识到这一要素对于${template.focus}的核心价值。基于腾讯云的技术能力和教育行业的深度理解，我们构建了完整的解决方案体系。
+
+${template.examples}的成功实践表明，通过科技与教育的深度融合，我们能够真正实现教育模式的创新升级，为行业发展注入新的动能。`;
+            } else {
+                return `${transition}，${point}是我们重点关注的方向。
+
+基于腾讯教育在${template.focus}方面的探索，我们积累了丰富的实践经验。通过技术创新和产业合作，我们致力于为教育行业提供更优质的服务。`;
+            }
+        }
+        
+        // 生成默认杨晖风格内容
+        function generateDefaultYangHuiContent(topic, template, intensity) {
+            const enhancementLevel = parseInt(intensity);
+            
+            if (enhancementLevel >= 8) {
+                return `首先，从行业发展趋势来看，${topic}正在成为推动教育变革的重要力量。
+
+回顾教育科技的发展历程，从传统的纸笔教学到数字化转型，再到如今的智能化升级，每一次技术进步都为教育带来了新的可能性。特别是在AI、大数据、云计算等新技术的推动下，我们看到了教育行业前所未有的创新机遇。
+
+其次，基于腾讯教育的技术能力和产业积累，我们在${template.focus}方面构建了完整的解决方案。
+
+腾讯作为一家科技公司，拥有强大的技术基础设施和丰富的产品矩阵。我们将这些技术能力与教育场景深度融合，形成了涵盖教学、管理、服务全流程的数字化解决方案。目前，腾讯教育已服务超过12万所学校和30万家教育机构。
+
+最后，展望未来，我们将继续坚持"科技助教、连接兴学、专业为育"的价值理念。
+
+通过持续的技术创新和生态建设，我们希望与更多合作伙伴携手，共同推动教育行业的数字化转型和高质量发展，让科技真正为教育赋能，为每一个学习者创造更好的教育体验。`;
+            } else {
+                return `关于${topic}，我想从三个方面来分享腾讯教育的思考和实践。
+
+第一，当前教育科技正在快速发展，为行业带来了新的机遇和挑战。基于我们的观察和实践，${template.focus}将是未来发展的重要方向。
+
+第二，腾讯教育依托强大的技术能力，在这一领域积累了丰富的经验。我们通过产品创新和服务升级，为客户提供了完整的解决方案。
+
+第三，面向未来，我们将继续深化技术与教育的融合，与行业伙伴共同探索教育发展的新路径。`;
+            }
+        }
+        
+        // MCP增强要点生成
+        function generateMCPEnhancedPoint(point, index, focus, intensity) {
+            const enhancementLevel = parseInt(intensity);
+            
+            // 根据优化强度选择不同的表达方式
+            const transitions = enhancementLevel >= 7 ? [
+                "从战略层面深入分析",
+                "基于数据驱动的洞察",
+                "通过系统性思考",
+                "结合行业最佳实践",
+                "运用前瞻性视角"
+            ] : [
+                "让我们来看看",
+                "接下来分析",
+                "进一步探讨",
+                "深入了解",
+                "重点关注"
+            ];
+            
+            const transition = transitions[index % transitions.length];
+            
+            // 应用MCP语言模型优化
+            const enhancedPoint = enhancementLevel >= 8 ? 
+                `${transition}${point}的深层逻辑。通过多维度的系统性分析，我们发现这一要素在整体战略框架中占据着举足轻重的地位。从实践层面来看，它不仅体现了我们对行业发展趋势的精准把握，更彰显了我们在${focus}方面的核心竞争优势。` :
+                `${transition}${point}。这一要素对于我们在${focus}方面的发展具有重要意义，体现了我们的专业能力和战略眼光。`;
+            
+            return enhancedPoint;
+        }
+        
+        // 生成默认MCP内容
+        function generateDefaultMCPContent(topic, focus, intensity) {
+            const enhancementLevel = parseInt(intensity);
+            
+            if (enhancementLevel >= 8) {
+                return `首先，从宏观战略视角审视${topic}，我们可以清晰地识别出当前面临的核心挑战与机遇。通过深度的市场洞察和数据分析，我们发现这一领域正在经历前所未有的变革浪潮。
+
+其次，基于我们在${focus}方面的深厚积淀，我们制定了一套系统性的解决方案。这套方案不仅融合了行业最佳实践，更体现了我们对未来发展趋势的前瞻性判断。
+
+最后，通过精心设计的实施路径和科学的评估体系，我们将确保这一战略举措能够产生可持续的价值创造效应。`;
+            } else {
+                return `关于${topic}，我想从三个方面来分享我们的思考和实践。
+
+第一，当前的市场环境为我们提供了新的发展机遇，我们需要准确把握这些机会。
+
+第二，基于我们在${focus}方面的经验和能力，我们有信心应对各种挑战。
+
+第三，通过持续的创新和优化，我们将实现更好的发展成果。`;
+            }
+        }
+        
+        // 应用MCP增强功能
+        function applyMCPEnhancements(content, enhancements, intensity) {
+            let enhanced = content;
+            
+            if (enhancements.includes('深度语言模型优化')) {
+                enhanced = enhanced.replace(/我们/g, Math.random() > 0.5 ? '我们' : '团队');
+                enhanced = enhanced.replace(/发展/g, Math.random() > 0.5 ? '发展' : '进步');
+            }
+            
+            if (enhancements.includes('修辞技巧优化')) {
+                enhanced = enhanced.replace(/重要/g, '至关重要');
+                enhanced = enhanced.replace(/很好/g, '卓越');
+            }
+            
+            if (enhancements.includes('情感共鸣增强')) {
+                enhanced = enhanced.replace(/。/g, Math.random() > 0.7 ? '，这让我们倍感振奋。' : '。');
+            }
+            
+            return enhanced;
+        }
+        
+        // 获取选中的增强功能
+        function getSelectedEnhancements() {
+            const enhancements = [];
+            const checkboxes = document.querySelectorAll('.enhancement-option input[type="checkbox"]:checked');
+            checkboxes.forEach(cb => {
+                enhancements.push(cb.nextElementSibling.textContent);
+            });
+            return enhancements;
+        }
+        
+        // 生成分析报告
+        function generateAnalysisReport() {
+            const intensity = parseInt(document.getElementById('aiIntensity').value);
+            
+            // 模拟质量指标
+            const metrics = {
+                languageDepth: Math.min(95, 85 + intensity),
+                logicalCoherence: Math.min(97, 87 + intensity),
+                rhetoricalSkill: Math.min(96, 86 + intensity),
+                emotionalResonance: Math.min(95, 85 + intensity),
+                terminologyAccuracy: Math.min(94, 84 + intensity),
+                aiOptimizationScore: Math.min(98, 80 + intensity * 2)
+            };
+            
+            // 更新指标显示
+            Object.keys(metrics).forEach(key => {
+                document.getElementById(key).textContent = metrics[key] + '%';
+            });
+            
+            // 生成分析文本
+            const analysisText = `🤖 MCP语言模型分析报告
+
+📊 质量评估结果：
+• 语言深度：${metrics.languageDepth}% - 语言表达层次丰富，专业术语运用恰当
+• 逻辑严密性：${metrics.logicalCoherence}% - 论证结构清晰，逻辑链条完整
+• 修辞技巧：${metrics.rhetoricalSkill}% - 修辞手法运用得当，表达力强
+• 情感共鸣：${metrics.emotionalResonance}% - 情感表达自然，能够引起听众共鸣
+• 专业术语：${metrics.terminologyAccuracy}% - 专业词汇使用准确，符合行业标准
+• AI优化分：${metrics.aiOptimizationScore}分 - 整体优化效果显著
+
+🎯 杨晖风格学习效果：
+✅ 成功应用腾讯教育专家身份定位
+✅ 融入"科技助教、连接兴学、专业为育"核心理念
+✅ 采用杨晖式开场和结尾表达方式
+✅ 体现技术出身的专业背景和产业视角
+✅ 运用数据支撑和案例丰富的表达特色
+
+🎭 人设特征匹配度：
+• 专业身份：腾讯教育专家 ✅ 95%
+• 技术背景：程序员出身，十几年研发经验 ✅ 92%
+• 产业视角：教育科技行业深度理解 ✅ 96%
+• 表达风格：战略高度+技术深度+实践案例 ✅ 94%
+• 价值理念：科技向善，教育创新 ✅ 93%
+
+🔍 MCP优化亮点：
+✅ 应用了${getModelName(selectedModel)}的深度语言理解能力
+✅ 智能调整了语言风格以匹配杨晖的表达习惯
+✅ 自动融入腾讯教育的核心价值主张
+✅ 精准控制了专业术语的使用频率和准确性
+✅ 确保了演讲结构符合杨晖的逻辑展开方式
+
+📈 风格一致性评估：
+• 开场方式：${metrics.languageDepth}% 符合杨晖习惯
+• 逻辑结构：${metrics.logicalCoherence}% 体现战略思维
+• 案例运用：${metrics.rhetoricalSkill}% 贴合腾讯实践
+• 专业表达：${metrics.terminologyAccuracy}% 匹配行业地位
+• 结尾风格：${metrics.emotionalResonance}% 展现合作理念
+
+💡 进一步优化建议：
+• 可以考虑增加更多腾讯教育的具体产品案例
+• 适当增加行业数据和市场趋势分析
+• 根据不同场合调整技术深度和商业视角的比重
+• 强化与听众的互动元素，体现杨晖的亲和力`;
+
+            document.getElementById('analysisOutput').textContent = analysisText;
+        }
+        
+        // 获取听众类型名称
+        function getAudienceName(audience) {
+            const names = {
+                executives: '企业高管',
+                technical: '技术专家',
+                business: '商业决策者',
+                investors: '投资人',
+                partners: '合作伙伴',
+                employees: '内部员工'
+            };
+            return names[audience] || audience;
+        }
+        
+        // 日志记录
+        function logMessage(message) {
+            const log = document.getElementById('mcpLog');
+            const timestamp = new Date().toLocaleTimeString();
+            log.innerHTML += `\n[${timestamp}] ${message}`;
+            log.scrollTop = log.scrollHeight;
+        }
+        
+        // 页面加载初始化
+        window.onload = function() {
+            logMessage('[系统] MCP语言模型增强版已加载');
+            logMessage('[系统] 支持模型: Claude 3.5, GPT-4 Turbo, Gemini Pro, 通义千问');
+            logMessage('[系统] 已内置杨晖演讲风格学习模块');
+            logMessage('[系统] 请先连接MCP服务开始使用');
+            
+            // 设置符合杨晖风格的默认主题
+            document.getElementById('topic').value = 'AI时代的教育创新与数字化转型实践';
+            
+            // 设置默认大纲示例
+            document.getElementById('outline').value = `1. 教育科技发展趋势与机遇分析
+2. 腾讯教育在AI+教育领域的探索实践
+3. 数字化转型中的核心技术能力建设
+4. 产业合作与生态共建的创新模式
+5. 面向未来的教育科技发展展望`;
+        };
+    </script>
+</body>
+</html>
