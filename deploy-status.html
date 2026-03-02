@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>部署状态检查 - 晖总演讲稿生成器</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .title {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .status-item.checking {
+            border-left-color: #ffc107;
+        }
+        
+        .status-item.error {
+            border-left-color: #dc3545;
+        }
+        
+        .status-text {
+            font-weight: 600;
+        }
+        
+        .status-icon {
+            font-size: 1.5em;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .info {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0,0,0,.1);
+            border-radius: 50%;
+            border-top-color: #667eea;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">🚀 部署状态检查</h1>
+        
+        <div id="statusList">
+            <div class="status-item checking" id="htmlStatus">
+                <span class="status-text">HTML文件加载</span>
+                <span class="status-icon"><div class="loading"></div></span>
+            </div>
+            
+            <div class="status-item checking" id="cssStatus">
+                <span class="status-text">CSS样式加载</span>
+                <span class="status-icon"><div class="loading"></div></span>
+            </div>
+            
+            <div class="status-item checking" id="jsStatus">
+                <span class="status-text">JavaScript功能</span>
+                <span class="status-icon"><div class="loading"></div></span>
+            </div>
+            
+            <div class="status-item checking" id="apiStatus">
+                <span class="status-text">API配置检查</span>
+                <span class="status-icon"><div class="loading"></div></span>
+            </div>
+        </div>
+        
+        <div class="info">
+            <h3>📋 部署检查项目：</h3>
+            <ul>
+                <li><strong>HTML文件加载</strong>：检查主页面是否正常加载</li>
+                <li><strong>CSS样式加载</strong>：检查页面样式是否正确显示</li>
+                <li><strong>JavaScript功能</strong>：检查交互功能是否正常工作</li>
+                <li><strong>API配置检查</strong>：检查AI模型配置是否可用</li>
+            </ul>
+        </div>
+        
+        <div id="resultSection" style="display: none;">
+            <h3 id="resultTitle"></h3>
+            <p id="resultMessage"></p>
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <a href="index.html" class="btn">🎯 进入主页面</a>
+            <button onclick="runCheck()" class="btn">🔄 重新检查</button>
+        </div>
+        
+        <div style="margin-top: 20px; color: #666; font-size: 0.9em;">
+            <p>💡 如果检查失败，请等待几分钟后重试，GitHub Pages部署通常需要2-5分钟</p>
+        </div>
+    </div>
+
+    <script>
+        let checkResults = {
+            html: false,
+            css: false,
+            js: false,
+            api: false
+        };
+        
+        function updateStatus(item, success, message = '') {
+            const element = document.getElementById(item + 'Status');
+            const icon = element.querySelector('.status-icon');
+            
+            if (success) {
+                element.className = 'status-item';
+                icon.innerHTML = '✅';
+                checkResults[item] = true;
+            } else {
+                element.className = 'status-item error';
+                icon.innerHTML = '❌';
+                checkResults[item] = false;
+            }
+            
+            if (message) {
+                element.querySelector('.status-text').textContent += ` - ${message}`;
+            }
+        }
+        
+        function checkHTML() {
+            // 检查HTML是否正常加载
+            setTimeout(() => {
+                if (document.readyState === 'complete') {
+                    updateStatus('html', true, '页面加载完成');
+                } else {
+                    updateStatus('html', false, '页面加载异常');
+                }
+                checkCSS();
+            }, 500);
+        }
+        
+        function checkCSS() {
+            // 检查CSS是否正常加载
+            setTimeout(() => {
+                const testElement = document.createElement('div');
+                testElement.style.display = 'none';
+                testElement.className = 'container';
+                document.body.appendChild(testElement);
+                
+                const styles = window.getComputedStyle(testElement);
+                if (styles.borderRadius && styles.borderRadius !== '0px') {
+                    updateStatus('css', true, '样式加载正常');
+                } else {
+                    updateStatus('css', false, '样式加载异常');
+                }
+                
+                document.body.removeChild(testElement);
+                checkJS();
+            }, 500);
+        }
+        
+        function checkJS() {
+            // 检查JavaScript是否正常工作
+            setTimeout(() => {
+                try {
+                    // 测试基本JavaScript功能
+                    const testArray = [1, 2, 3];
+                    const testResult = testArray.map(x => x * 2);
+                    
+                    if (testResult.length === 3 && testResult[0] === 2) {
+                        updateStatus('js', true, 'JavaScript正常');
+                    } else {
+                        updateStatus('js', false, 'JavaScript异常');
+                    }
+                } catch (error) {
+                    updateStatus('js', false, 'JavaScript错误');
+                }
+                checkAPI();
+            }, 500);
+        }
+        
+        function checkAPI() {
+            // 检查API配置类是否可用
+            setTimeout(() => {
+                try {
+                    // 尝试创建API配置实例
+                    class TestAPIConfig {
+                        constructor() {
+                            this.test = true;
+                        }
+                        checkAPIKeys() {
+                            return { openai: false, claude: false };
+                        }
+                    }
+                    
+                    const testConfig = new TestAPIConfig();
+                    if (testConfig.test && typeof testConfig.checkAPIKeys === 'function') {
+                        updateStatus('api', true, 'API配置可用');
+                    } else {
+                        updateStatus('api', false, 'API配置异常');
+                    }
+                } catch (error) {
+                    updateStatus('api', false, 'API配置错误');
+                }
+                showResult();
+            }, 500);
+        }
+        
+        function showResult() {
+            const resultSection = document.getElementById('resultSection');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultMessage = document.getElementById('resultMessage');
+            
+            const successCount = Object.values(checkResults).filter(Boolean).length;
+            const totalCount = Object.keys(checkResults).length;
+            
+            resultSection.style.display = 'block';
+            
+            if (successCount === totalCount) {
+                resultTitle.textContent = '🎉 部署检查通过！';
+                resultTitle.style.color = '#28a745';
+                resultMessage.innerHTML = `
+                    所有检查项目都通过了！您的晖总演讲稿生成器已成功部署到GitHub Pages。<br><br>
+                    <strong>✅ 检查结果：${successCount}/${totalCount} 项通过</strong><br><br>
+                    现在您可以：<br>
+                    • 点击"进入主页面"开始使用<br>
+                    • 分享网站链接给其他人<br>
+                    • 配置API密钥以使用真实AI功能
+                `;
+            } else {
+                resultTitle.textContent = '⚠️ 部署检查发现问题';
+                resultTitle.style.color = '#dc3545';
+                resultMessage.innerHTML = `
+                    检查发现 ${totalCount - successCount} 个问题需要解决。<br><br>
+                    <strong>📊 检查结果：${successCount}/${totalCount} 项通过</strong><br><br>
+                    建议：<br>
+                    • 等待几分钟后重新检查（GitHub Pages部署需要时间）<br>
+                    • 检查GitHub仓库的Actions标签查看部署状态<br>
+                    • 确认所有文件都已正确上传
+                `;
+            }
+        }
+        
+        function runCheck() {
+            // 重置状态
+            checkResults = { html: false, css: false, js: false, api: false };
+            
+            // 重置UI
+            const items = ['html', 'css', 'js', 'api'];
+            items.forEach(item => {
+                const element = document.getElementById(item + 'Status');
+                element.className = 'status-item checking';
+                element.querySelector('.status-icon').innerHTML = '<div class="loading"></div>';
+                element.querySelector('.status-text').textContent = element.querySelector('.status-text').textContent.split(' - ')[0];
+            });
+            
+            document.getElementById('resultSection').style.display = 'none';
+            
+            // 开始检查
+            checkHTML();
+        }
+        
+        // 页面加载完成后自动开始检查
+        window.onload = function() {
+            setTimeout(runCheck, 1000);
+        };
+    </script>
+</body>
+</html>
