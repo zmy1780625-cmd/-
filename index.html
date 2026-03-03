@@ -667,10 +667,6 @@
                     <span class="status-icon">🤖</span>
                     <span class="status-text">GLM-4 Plus: <span id="glmStatusText">检测中...</span></span>
                 </div>
-                <div class="api-status-item" id="qwenStatusBar">
-                    <span class="status-icon">🌟</span>
-                    <span class="status-text">通义千问Max: <span id="qwenStatusText">检测中...</span></span>
-                </div>
             </div>
         </div>
         
@@ -703,13 +699,6 @@
                             <div>
                                 <strong>GLM-4 Plus</strong><br>
                                 <small>智谱AI最新</small>
-                            </div>
-                        </div>
-                        <div class="model-option" onclick="selectModel('qwen')">
-                            <input type="radio" name="model" value="qwen">
-                            <div>
-                                <strong>通义千问Max</strong><br>
-                                <small>阿里云顶级</small>
                             </div>
                         </div>
                     </div>
@@ -1315,7 +1304,7 @@
                         } else if (test.name === 'API配置') {
                             if (backendAPI.isVercel) {
                                 console.log('- 请检查Vercel环境变量中的API密钥配置');
-                                console.log('- 确认GLM_API_KEY和QWEN_API_KEY已正确设置');
+                                console.log('- 确认GLM_API_KEY已正确设置');
                             } else {
                                 console.log('- 请检查API配置文件是否存在且格式正确');
                             }
@@ -1474,13 +1463,9 @@
             // 智能选择最优可用模型
             if (!apiConfig || !apiConfig.apis) return 'glm';
             
-            // 优先级：GLM > 通义千问
+            // 优先使用GLM
             if (apiConfig.apis.glm && apiConfig.apis.glm.status === 'connected') return 'glm';
-            if (apiConfig.apis.qwen && apiConfig.apis.qwen.status === 'connected') return 'qwen';
-            
-            // 如果都没连接，检查已配置的
             if (apiConfig.apis.glm && apiConfig.apis.glm.status === 'configured') return 'glm';
-            if (apiConfig.apis.qwen && apiConfig.apis.qwen.status === 'configured') return 'qwen';
             
             // 默认返回GLM
             return 'glm';
@@ -1516,8 +1501,7 @@
         // 获取模型显示名称
         function getModelDisplayName(model) {
             const names = {
-                'glm': 'GLM-4 Plus',
-                'qwen': '通义千问Max'
+                'glm': 'GLM-4 Plus'
             };
             return names[model] || model;
         }
@@ -2317,8 +2301,7 @@ ${topic}的创新发展需要完善的创新生态支撑：
         // 获取模型提供商
         function getModelProvider(model) {
             const providerMap = {
-                'glm': 'glm',
-                'qwen': 'qwen'
+                'glm': 'glm'
             };
             return providerMap[model] || 'glm';
         }
@@ -2326,8 +2309,7 @@ ${topic}的创新发展需要完善的创新生态支撑：
         // 获取实际模型名称
         function getActualModel(model) {
             const modelMap = {
-                'glm': 'glm-4-plus',  // 使用GLM-4 Plus模型
-                'qwen': 'qwen-max'    // 使用通义千问Max模型
+                'glm': 'glm-4-plus'  // 使用GLM-4 Plus模型
             };
             return modelMap[model] || 'glm-4-plus';
         }
