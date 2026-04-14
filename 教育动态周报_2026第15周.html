@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>教育动态周报 · 2026年第15周</title>
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --accent: #2fa8e0;
+    --accent-light: #5bc5f2;
+    --bg: #f0f4f8;
+    --card: #ffffff;
+    --text: #1a2233;
+    --text-secondary: #5a6a7e;
+    --border: #e4eaf0;
+    --tag-bg: #eaf4fc;
+    --tag-text: #1a6fb5;
+    --section-bg: #f7fafd;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+      /* ===== HERO HEADER — Glassmorphism 3D Style ===== */
+  .hero {
+    position: relative;
+    background: linear-gradient(160deg, #f0f7ff 0%, #e8f4ff 30%, #f5faff 60%, #ffffff 100%);
+    padding: 0;
+    overflow: hidden;
+  }
+  /* Soft ambient glow orbs */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -60px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(59,130,246,0.16) 0%, rgba(59,130,246,0.06) 40%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -80px;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(96,165,250,0.12) 0%, transparent 60%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  /* Top brand bar — frosted glass */
+  .hero-topbar {
+    display: flex;
+    align-items: center;
+    padding: 14px 40px;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(59,130,246,0.08);
+    gap: 20px;
+    position: relative;
+    z-index: 10;
+  }
+  .hero-topbar .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 27px;
+    font-weight: 600;
+    color: #1e40af;
+    letter-spacing: 0.5px;
+  }
+  .hero-topbar .brand-logo .icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    box-shadow: 0 2px 8px rgba(59,130,246,0.25);
+  }
+  .hero-topbar .brand-logo .icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .hero-topbar .brand-sep {
+    width: 1px;
+    height: 20px;
+    background: rgba(59,130,246,0.2);
+  }
+  /* Hero body */
+  .hero-body {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 56px 60px 60px;
+    min-height: 240px;
+  }
+  /* Right side 3D glass decoration */
+  .hero-visual {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 340px;
+    height: 300px;
+    pointer-events: none;
+  }
+  /* Left content */
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 520px;
+  }
+  /* Date pill — glass style */
+  .date-pill {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    color: #fff;
+    padding: 10px 28px;
+    border-radius: 24px;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(59,130,246,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+  /* Title */
+  .hero h1 {
+    font-size: 62px;
+    font-weight: 800;
+    color: #1e3a5f;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+    line-height: 1.1;
+    text-shadow: 0 2px 20px rgba(59,130,246,0.1);
+  }
+  /* Subtitle */
+  .hero .subtitle {
+    font-size: 30px;
+    color: #64748b;
+    font-weight: 500;
+    letter-spacing: 3px;
+  }
+  .hero .subtitle span {
+    margin: 0 6px;
+    color: #94a3b8;
+  }
+
+  /* ===== MAIN CONTENT ===== */
+  .container { max-width: 1200px; margin: 0 auto; padding: 32px 20px 60px; }
+
+  /* ===== SECTION ===== */
+  .section { margin-bottom: 28px; background: var(--card); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 8px rgba(26,58,92,0.06); border: 1px solid var(--border); }
+  .section-header { display: flex; align-items: center; gap: 14px; padding: 20px 28px; background: linear-gradient(90deg, var(--section-bg) 0%, #fff 100%); border-bottom: 2px solid var(--accent); position: relative; }
+  .section-header::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(180deg, var(--accent), var(--accent-light)); border-radius: 0 2px 2px 0; }
+  .section-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 33px; flex-shrink: 0; color: #fff; }
+  .section-icon.s1 { background: linear-gradient(135deg, #e17055, #fab1a0); }
+  .section-icon.s2 { background: linear-gradient(135deg, #2fa8e0, #1a8fd0); }
+  .section-icon.s3 { background: linear-gradient(135deg, #00b894, #55efc4); }
+  .section-icon.s4 { background: linear-gradient(135deg, #6c5ce7, #a29bfe); }
+  .section-icon.s5 { background: linear-gradient(135deg, #fdcb6e, #f39c12); }
+  .section-title { font-size: 32px; font-weight: 700; color: var(--primary); letter-spacing: 1px; }
+
+  /* ===== ARTICLE CARD ===== */
+  .article { padding: 18px 28px; border-bottom: 1px solid #f0f4f8; transition: background 0.15s; position: relative; }
+  .article:last-child { border-bottom: none; }
+  .article:hover { background: #f9fbfe; }
+  .article-num { position: absolute; left: 28px; top: 20px; width: 24px; height: 24px; border-radius: 7px; background: var(--tag-bg); color: var(--accent); font-size: 24px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .article-title { font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 6px; padding-left: 34px; line-height: 1.5; }
+  .article p { font-size: 26px; color: var(--text-secondary); line-height: 1.8; padding-left: 34px; }
+  .article .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; padding-left: 34px; }
+  .tag { font-size: 24px; padding: 3px 12px; border-radius: 12px; background: var(--tag-bg); color: var(--tag-text); font-weight: 500; }
+  .tag.hot { background: linear-gradient(135deg, #fff1f0, #ffe7e4); color: #e74c3c; }
+  .tag.trend { background: linear-gradient(135deg, #fff8e1, #ffecb3); color: #e67e22; }
+
+  /* ===== SPECIAL SECTIONS ===== */
+  .insight-section { margin-bottom: 28px; background: var(--card); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 8px rgba(26,58,92,0.06); border: 1px solid var(--border); }
+  .insight-header { display: flex; align-items: center; gap: 14px; padding: 20px 28px; background: linear-gradient(90deg, var(--section-bg) 0%, #fff 100%); border-bottom: 2px solid var(--accent); position: relative; }
+  .insight-header::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(180deg, var(--accent), var(--accent-light)); border-radius: 0 2px 2px 0; }
+  .insight-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 33px; flex-shrink: 0; color: #fff; }
+  .insight-icon.person { background: linear-gradient(135deg, #a29bfe, #6c5ce7); }
+  .insight-icon.trend { background: linear-gradient(135deg, #fd79a8, #e84393); }
+  .insight-title { font-size: 32px; font-weight: 700; color: var(--primary); letter-spacing: 1px; }
+  .insight-body { padding: 24px 28px; }
+  .insight-body .person-name { font-size: 27px; font-weight: 700; color: var(--accent); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .insight-body .person-name::before { content: ''; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+  .insight-body .person-role { font-size: 25px; color: var(--text-secondary); margin-bottom: 14px; padding-left: 16px; }
+  .insight-body .quote { font-size: 27px; line-height: 2; color: var(--text-secondary); padding: 18px 22px; background: linear-gradient(135deg, #f8f5ff, #f0ecff); border-radius: 10px; border-left: 3px solid #a29bfe; }
+  .insight-body .trend-text { font-size: 27px; line-height: 2; color: var(--text-secondary); }
+  .insight-body .trend-text strong { color: var(--primary); }
+
+  /* ===== SUMMARY ===== */
+  .summary { background: linear-gradient(135deg, #e8eef6 0%, #dce6f0 50%, #cfdae8 100%); border-radius: 14px; padding: 32px; position: relative; overflow: hidden; border: 1px solid var(--border); }
+  .summary::after { content: ''; position: absolute; top: -40px; right: -40px; width: 160px; height: 160px; background: linear-gradient(135deg, rgba(47,168,224,0.12), rgba(91,197,242,0.08)); border-radius: 50%; }
+  .summary h3 { font-size: 32px; font-weight: 700; color: var(--primary); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; letter-spacing: 1px; }
+  .summary h3::before { content: ''; width: 4px; height: 22px; background: linear-gradient(180deg, var(--accent), var(--accent-light)); border-radius: 2px; flex-shrink: 0; }
+  .summary p { font-size: 27px; line-height: 2; color: var(--text-secondary); position: relative; z-index: 1; }
+  .summary p strong { color: var(--primary); }
+
+  /* ===== QR CODE FOOTER ===== */
+  .qr-footer { background: #e8eef4; padding: 40px 20px 44px; text-align: center; }
+  .qr-row { display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; }
+  .qr-item { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .qr-img-wrap { width: 160px; height: 160px; background: #fff; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(26,58,92,0.08); overflow: hidden; padding: 10px; }
+  .qr-img-wrap img { width: 100%; height: 100%; object-fit: contain; }
+  .qr-label { font-size: 27px; color: var(--text-secondary); font-weight: 500; letter-spacing: 0.5px; }
+
+  @media (max-width: 768px) {
+    .hero-topbar { padding: 10px 20px; gap: 12px; }
+    .hero-topbar .brand-logo { font-size: 25px; }
+    .hero-body { padding: 36px 24px 40px; min-height: 180px; }
+    .hero h1 { font-size: 46px; letter-spacing: 2px; }
+    .hero .subtitle { font-size: 27px; letter-spacing: 2px; }
+    .date-pill { font-size: 26px; padding: 8px 20px; }
+    .hero-visual { display: none; }
+    .section-header { padding: 16px 20px; }
+    .article { padding: 16px 20px; }
+    .article-num { left: 20px; top: 18px; }
+    .summary { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO HEADER ===== -->
+<div class="hero">
+  <!-- Top brand bar -->
+  <div class="hero-topbar">
+    <div class="brand-logo">
+      <div class="icon"><img src="logo-tencentcloud.png" alt="腾讯云"></div>
+      腾讯云
+    </div>
+    <div class="brand-sep"></div>
+    <div class="brand-logo">
+      <div class="icon"><img src="腾讯教育.jpg" alt="腾讯教育"></div>
+      腾讯教育
+    </div>
+  </div>
+
+  <!-- Hero body -->
+  <div class="hero-body">
+    <!-- 3D Glass decoration -->
+    <div class="hero-visual">
+      <svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="6" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="bigGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="12" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="dropShadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#3b82f6" flood-opacity="0.2"/>
+          </filter>
+          <filter id="dropShadowSm" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#3b82f6" flood-opacity="0.18"/>
+          </filter>
+          <!-- Glass face gradients - boosted opacity -->
+          <linearGradient id="faceTop" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="rgba(147,197,253,0.7)"/>
+            <stop offset="100%" stop-color="rgba(59,130,246,0.45)"/>
+          </linearGradient>
+          <linearGradient id="faceLeft" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="rgba(96,165,250,0.65)"/>
+            <stop offset="100%" stop-color="rgba(37,99,235,0.35)"/>
+          </linearGradient>
+          <linearGradient id="faceRight" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="rgba(191,219,254,0.75)"/>
+            <stop offset="100%" stop-color="rgba(147,197,253,0.5)"/>
+          </linearGradient>
+          <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#60a5fa" stop-opacity="0.3"/>
+          </linearGradient>
+          <radialGradient id="sphereGrad" cx="35%" cy="35%" r="60%">
+            <stop offset="0%" stop-color="rgba(191,219,254,0.9)"/>
+            <stop offset="50%" stop-color="rgba(96,165,250,0.6)"/>
+            <stop offset="100%" stop-color="rgba(37,99,235,0.4)"/>
+          </radialGradient>
+          <radialGradient id="sphereGrad2" cx="35%" cy="35%" r="60%">
+            <stop offset="0%" stop-color="rgba(253,224,150,0.9)"/>
+            <stop offset="50%" stop-color="rgba(245,189,65,0.6)"/>
+            <stop offset="100%" stop-color="rgba(217,119,6,0.35)"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Background ambient glow -->
+        <circle cx="160" cy="140" r="120" fill="rgba(59,130,246,0.06)" filter="url(#bigGlow)"/>
+        <circle cx="200" cy="100" r="80" fill="rgba(96,165,250,0.05)" filter="url(#bigGlow)"/>
+
+        <!-- Base platform shadow -->
+        <ellipse cx="155" cy="235" rx="100" ry="20" fill="rgba(59,130,246,0.1)" filter="url(#softGlow)"/>
+
+        <!-- Grid lines on base -->
+        <g opacity="0.12">
+          <line x1="70" y1="228" x2="240" y2="228" stroke="#3b82f6" stroke-width="0.8"/>
+          <line x1="85" y1="222" x2="225" y2="222" stroke="#3b82f6" stroke-width="0.6"/>
+          <line x1="100" y1="216" x2="210" y2="216" stroke="#3b82f6" stroke-width="0.4"/>
+          <line x1="155" y1="210" x2="155" y2="240" stroke="#3b82f6" stroke-width="0.5"/>
+          <line x1="130" y1="215" x2="130" y2="238" stroke="#3b82f6" stroke-width="0.4"/>
+          <line x1="180" y1="215" x2="180" y2="238" stroke="#3b82f6" stroke-width="0.4"/>
+        </g>
+
+        <!-- === MAIN GLASS CUBE (enlarged) === -->
+        <g transform="translate(148, 140)" filter="url(#dropShadow)">
+          <!-- Back face -->
+          <path d="M-60,-50 L0,-80 L60,-50 L0,-20 Z" fill="url(#faceTop)" stroke="rgba(255,255,255,0.7)" stroke-width="1.2"/>
+          <!-- Left face -->
+          <path d="M-60,-50 L0,-20 L0,55 L-60,25 Z" fill="url(#faceLeft)" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+          <!-- Right face (brightest) -->
+          <path d="M60,-50 L0,-20 L0,55 L60,25 Z" fill="url(#faceRight)" stroke="rgba(255,255,255,0.85)" stroke-width="1.5"/>
+          <!-- Top edge highlight -->
+          <path d="M-60,-50 L0,-80 L60,-50 L0,-20 Z" fill="none" stroke="rgba(255,255,255,1)" stroke-width="2"/>
+          <!-- Right edge highlight -->
+          <line x1="60" y1="-50" x2="60" y2="25" stroke="rgba(255,255,255,0.8)" stroke-width="1.5"/>
+          <!-- Center vertical line -->
+          <line x1="0" y1="-20" x2="0" y2="55" stroke="rgba(59,130,246,0.2)" stroke-width="1"/>
+          <!-- Light reflection on right face -->
+          <path d="M45,-40 L5,-15 L5,15 L45,-5 Z" fill="rgba(255,255,255,0.15)"/>
+        </g>
+
+        <!-- === ORBIT RING (enlarged) === -->
+        <ellipse cx="148" cy="140" rx="88" ry="24" 
+                 fill="none" 
+                 stroke="url(#accentGrad)" 
+                 stroke-width="3.5"
+                 transform="rotate(-12 148 140)"
+                 filter="url(#dropShadowSm)"/>
+        <!-- Second thinner ring -->
+        <ellipse cx="148" cy="140" rx="78" ry="18" 
+                 fill="none" 
+                 stroke="rgba(59,130,246,0.2)" 
+                 stroke-width="1.5"
+                 stroke-dasharray="6 4"
+                 transform="rotate(-12 148 140)"/>
+
+        <!-- === FLOATING SPHERE (top right, bigger) === -->
+        <g filter="url(#dropShadowSm)">
+          <circle cx="235" cy="70" r="22" fill="url(#sphereGrad)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+          <!-- Specular highlight -->
+          <ellipse cx="228" cy="63" rx="8" ry="6" fill="rgba(255,255,255,0.4)" transform="rotate(-20 228 63)"/>
+        </g>
+
+        <!-- === FLOATING GOLD SPHERE (left) === -->
+        <g filter="url(#dropShadowSm)">
+          <circle cx="55" cy="85" r="16" fill="url(#sphereGrad2)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+          <ellipse cx="50" cy="79" rx="6" ry="4" fill="rgba(255,255,255,0.35)" transform="rotate(-15 50 79)"/>
+        </g>
+
+        <!-- === FLOATING CUBES (enlarged) === -->
+        <g transform="translate(240, 175)" filter="url(#dropShadowSm)">
+          <rect x="-18" y="-18" width="36" height="36" rx="5" 
+                fill="url(#faceRight)" 
+                stroke="rgba(255,255,255,0.7)" 
+                stroke-width="1.2"
+                transform="rotate(30)"/>
+          <path d="M-18,-18 L0,-30 L18,-18 L0,-6 Z" fill="url(#faceTop)" stroke="rgba(255,255,255,0.8)" stroke-width="1" transform="rotate(30)"/>
+        </g>
+
+        <g transform="translate(65, 175)" filter="url(#dropShadowSm)">
+          <rect x="-14" y="-14" width="28" height="28" rx="4" 
+                fill="url(#faceLeft)" 
+                stroke="rgba(255,255,255,0.6)" 
+                stroke-width="1"
+                transform="rotate(-25)"/>
+        </g>
+
+        <g transform="translate(110, 60)" filter="url(#dropShadowSm)">
+          <rect x="-11" y="-11" width="22" height="22" rx="3" 
+                fill="url(#faceTop)" 
+                stroke="rgba(255,255,255,0.65)" 
+                stroke-width="1"
+                transform="rotate(15)"/>
+        </g>
+
+        <!-- === HEXAGON (new element) === -->
+        <g transform="translate(255, 130)" filter="url(#dropShadowSm)">
+          <polygon points="0,-14 12,-7 12,7 0,14 -12,7 -12,-7" 
+                   fill="rgba(147,197,253,0.5)" 
+                   stroke="rgba(255,255,255,0.7)" 
+                   stroke-width="1.2"/>
+          <polygon points="0,-8 7,-4 7,4 0,8 -7,4 -7,-4" 
+                   fill="rgba(59,130,246,0.2)"/>
+        </g>
+
+        <!-- === TRIANGLE (new element) === -->
+        <g transform="translate(38, 135)" filter="url(#dropShadowSm)">
+          <polygon points="0,-16 14,10 -14,10" 
+                   fill="rgba(253,224,150,0.4)" 
+                   stroke="rgba(255,255,255,0.6)" 
+                   stroke-width="1"/>
+        </g>
+
+        <!-- === SMALL BUBBLES (more, varied) === -->
+        <circle cx="280" cy="55" r="5" fill="url(#sphereGrad)" opacity="0.6" filter="url(#softGlow)"/>
+        <circle cx="30" cy="60" r="4" fill="url(#sphereGrad2)" opacity="0.5"/>
+        <circle cx="90" cy="215" r="5" fill="url(#sphereGrad)" opacity="0.45"/>
+        <circle cx="200" cy="230" r="3.5" fill="url(#sphereGrad)" opacity="0.4"/>
+        <circle cx="280" cy="200" r="4" fill="url(#sphereGrad2)" opacity="0.35"/>
+        <circle cx="20" cy="210" r="3" fill="url(#sphereGrad)" opacity="0.3"/>
+
+        <!-- === CONNECTION LINES === -->
+        <line x1="77" y1="85" x2="110" y2="60" stroke="rgba(59,130,246,0.18)" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="110" y1="60" x2="148" y2="70" stroke="rgba(59,130,246,0.14)" stroke-width="1" stroke-linecap="round" stroke-dasharray="4 3"/>
+        <line x1="235" y1="92" x2="255" y2="120" stroke="rgba(59,130,246,0.15)" stroke-width="1" stroke-linecap="round"/>
+        <line x1="255" y1="144" x2="240" y2="160" stroke="rgba(59,130,246,0.12)" stroke-width="1" stroke-linecap="round"/>
+        <line x1="52" y1="135" x2="88" y2="140" stroke="rgba(245,189,65,0.15)" stroke-width="1" stroke-linecap="round"/>
+
+        <!-- === DATA PARTICLES (new - tiny dots trail) === -->
+        <g opacity="0.3">
+          <circle cx="130" cy="40" r="1.8" fill="#3b82f6"/>
+          <circle cx="170" cy="35" r="1.5" fill="#60a5fa"/>
+          <circle cx="200" cy="45" r="1.2" fill="#93c5fd"/>
+          <circle cx="260" cy="90" r="1.5" fill="#3b82f6"/>
+          <circle cx="270" cy="160" r="1.3" fill="#60a5fa"/>
+          <circle cx="100" cy="190" r="1.5" fill="#3b82f6"/>
+          <circle cx="160" cy="250" r="1.3" fill="#60a5fa"/>
+          <circle cx="220" cy="250" r="1" fill="#93c5fd"/>
+        </g>
+
+        <!-- === LIGHT RAYS from center cube === -->
+        <g opacity="0.06">
+          <line x1="148" y1="140" x2="40" y2="40" stroke="#3b82f6" stroke-width="20"/>
+          <line x1="148" y1="140" x2="290" y2="80" stroke="#60a5fa" stroke-width="16"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="hero-content">
+      <div class="date-pill">2026.4.6–2026.4.12</div>
+      <h1>教育动态周报</h1>
+      <div class="subtitle">聚焦教育<span>·</span>政策<span>·</span>行业新势</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="container">
+
+  <!-- 一、热点资讯 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon s1">🔥</div>
+      <div class="section-title">一、热点资讯</div>
+    </div>
+    <div class="article">
+      <div class="article-num">01</div>
+      <div class="article-title">五部门联合印发《"人工智能+教育"行动计划》</div>
+      <p>4月2日，教育部、国家发改委、工信部、科技部、国家数据局联合印发《"人工智能+教育"行动计划》（教科信〔2026〕1号），围绕人才培养、应用创新、基础环境和生态建设进行一体部署。该计划是落实国务院“人工智能+”行动在教育领域的专项文件。</p>
+      <div class="tags"><span class="tag hot">🔥 重磅政策</span><span class="tag">人工智能+教育</span><span class="tag">顶层设计</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">02</div>
+      <div class="article-title">国联民生证券发布教育行业一季报前瞻</div>
+      <p>国联民生证券发布教育行业2026年一季报前瞻报告，认为教育行业面临政策改善、供给出清、需求释放等多重因素影响。报告指出 DeepSeek 等开源模型降低了 AI 技术门槛，AI 教育应用正从试点走向体系化落地。</p>
+      <div class="tags"><span class="tag hot">🔥 券商研报</span><span class="tag">AI教育</span><span class="tag">商业化</span></div>
+    </div>
+  </div>
+
+  <!-- 二、教企动态 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon s2">🏢</div>
+      <div class="section-title">二、教企动态</div>
+    </div>
+    <div class="article">
+      <div class="article-num">03</div>
+      <div class="article-title">斑马举办内部 AI 创作比赛</div>
+      <p>斑马举办内部AI创作比赛，15个由非技术岗位员工完成的作品改变了团队对AI能力的认知。非技术人员根据工作需求使用AI工具自主完成作品，反映出AI已跨越"技术门槛"成为全员可用的通用生产力工具，企业AI素养正从技术团队向全员渗透。</p>
+      <div class="tags"><span class="tag hot">🔥 行业热点</span><span class="tag">AI素养</span><span class="tag">全员生产力</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">04</div>
+      <div class="article-title">Adobe 推出 AI 学习助手功能</div>
+      <p>Adobe 发布 AI 学习助手功能，可基于用户上传的学习资料生成个性化辅导内容，支持全天候使用。国际软件企业持续布局教育 AI 赛道。</p>
+      <div class="tags"><span class="tag">AI私教</span><span class="tag">个性化学习</span><span class="tag">Adobe</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">05</div>
+      <div class="article-title">Netflix 推出独立儿童应用 Playground</div>
+      <p>Netflix推出全新独立儿童应用Netflix Playground，对订阅用户免费开放。服务涵盖教育游戏、互动故事等内容，标志着奈飞从"流媒体播放"向"儿童教育内容平台"延伸，国际巨头加速布局教育赛道。</p>
+      <div class="tags"><span class="tag hot">🔥 行业热点</span><span class="tag">儿童教育</span><span class="tag">内容赛道</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">06</div>
+      <div class="article-title">FF 将家庭教育定位为 EAI 机器人核心场景</div>
+      <p>FF 创始人贾跃亭表示家庭教育将成为 EAI 机器人业务第一阶段的核心场景，称已与加州政府展开对话。产品售价 2499-34990 美元，公司称 2026 年 Q1 已实现单品正毛利，目标年内出货 1000 台以上。</p>
+      <div class="tags"><span class="tag">具身智能</span><span class="tag">家庭教育</span><span class="tag">EAI机器人</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">07</div>
+      <div class="article-title">Obsidian年营收1.7亿元：无融资微型团队的突围之道</div>
+      <p>美国笔记软件 Obsidian 在无外部融资、保持小团队规模的情况下，实现年营收约 1.7 亿元。其“本地优先+插件生态+AI 功能”的差异化策略，在 Notion 等竞争者中保持了稳定增长。</p>
+      <div class="tags"><span class="tag">商业模式</span><span class="tag">AI笔记</span><span class="tag">Obsidian</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">08</div>
+      <div class="article-title">智谱发布上市后首份年报：营收 7.24 亿元</div>
+      <p>3月31日，智谱（HK:02513）发布上市后首份年报：2025年总收入 7.24 亿元，同比增长 131.9%；MaaS API 平台 ARR 升至 17 亿元，同比增长约 60 倍；综合毛利率 41%。</p>
+      <div class="tags"><span class="tag hot">🔥 营收翻倍</span><span class="tag">智谱</span><span class="tag">大模型</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">09</div>
+      <div class="article-title">优必选 2025 年营收 20.01 亿元</div>
+      <p>优必选（09880.HK）发布 2025 年度业绩：营收 20.01 亿元，同比增长 53.3%；毛利润 7.54 亿元，同比增长 101.6%；毛利率 37.7%；净亏损 7.89 亿元，同比收窄 32.0%。全尺寸人形机器人收入同比增长超 22 倍。</p>
+      <div class="tags"><span class="tag">财报</span><span class="tag">人形机器人</span><span class="tag">优必选</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">10</div>
+      <div class="article-title">读书郎 2025 年营收 3.35 亿元，净亏损 1.19 亿元</div>
+      <p>4月10日，读书郎（02385.HK）公布 2025 年业绩：收入约 3.35 亿元，同比减少 27.4%；净亏损约 1.19 亿元，亏损同比扩大 98%。主要受学生平板销量下滑影响。</p>
+      <div class="tags"><span class="tag">财报</span><span class="tag">教育硬件</span><span class="tag">读书郎</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">11</div>
+      <div class="article-title">海亮科技与孚宝机器人达成战略合作，Enabot新品EBO Max发布</div>
+      <p>海亮科技与孚宝机器人签署战略合作协议，围绕"医疗+教育+养老"场景开展跨界合作。同期，家庭机器人品牌Enabot发布新品EBO Max，全球累计用户数已突破百万，主打家庭陪伴与远程互动场景。</p>
+      <div class="tags"><span class="tag">战略合作</span><span class="tag">教育机器人</span></div>
+    </div>
+  </div>
+
+  <!-- 三、校园前沿 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon s3">🎓</div>
+      <div class="section-title">三、校园前沿</div>
+    </div>
+    <div class="article">
+      <div class="article-num">12</div>
+      <div class="article-title">教育部首场"千校万企供需对接会"在大连理工大学举行</div>
+      <p>4月10日，2026年教育部首场"千校万企供需对接会"在大连理工大学举行，AI、新能源、智能制造等行业成为揽才主引擎，校企人才精准对接机制进一步强化。</p>
+      <div class="tags"><span class="tag">校企对接</span><span class="tag">人才供需</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">13</div>
+      <div class="article-title">南开大学率先发布2026强基计划，新增AI培养方案</div>
+      <p>南开大学发布2026年强基计划招生简章，成为首个公布的高校。核心变化：从"分省招生"改为"面向全国招生"；信息与计算科学专业新增AI培养方案，依托人工智能学院培养智能机器人方向人才。</p>
+      <div class="tags"><span class="tag">强基计划</span><span class="tag">AI培养</span><span class="tag">南开大学</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">14</div>
+      <div class="article-title">北京"十五五"规划：新增 20 万个学位</div>
+      <p>《北京市国民经济和社会发展第十五个五年规划纲要》于 2026 年 1 月经市人大批准。教育领域提出：新增 10 万个中小学学位和 10 万个高等教育学位，稳步扩大免费教育范围，积极探索延长义务教育年限。</p>
+      <div class="tags"><span class="tag hot">🔥 十五五规划</span><span class="tag">北京教育</span><span class="tag">学位扩容</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">15</div>
+      <div class="article-title">同济大学与香港中文大学签约共建智慧交通联合实验室</div>
+      <p>同济大学与香港中文大学签署合作协议，共建智慧交通联合实验室，推动AI与交通工程交叉学科研究和人才培养，内地与香港高校科研合作持续深化。</p>
+      <div class="tags"><span class="tag">校企合作</span><span class="tag">交叉学科</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">16</div>
+      <div class="article-title">安徽大学新闻传播学院三系更名，融入"数智"理念</div>
+      <p>安徽大学新闻传播学院三个系完成更名升级，融入"数智"理念，体现高校新闻传播教育数字化转型趋势，学科名称变革折射出人才培养方向调整。</p>
+      <div class="tags"><span class="tag">学科改革</span><span class="tag">数字化转型</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">17</div>
+      <div class="article-title">北京东城新增京杜学校，打造双轨制办学模式</div>
+      <p>北京市东城区京杜学校正式宣布成立，与昆山杜克大学签署战略合作协议，在课程、师资、项目等多维度协同推进，打造兼顾国内高考与国际升学双轨制办学模式。</p>
+      <div class="tags"><span class="tag">办学创新</span><span class="tag">双轨制</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">18</div>
+      <div class="article-title">广东多所高校宣布2026年本科扩招</div>
+      <p>广东"3+证书"本科批次录取院校达15所，总计划1975个，较去年扩招150人，其中广州职业技术大学、顺德职业技术大学和广州工商学院为首次招生，职业教育升学通道持续拓宽。</p>
+      <div class="tags"><span class="tag">本科扩招</span><span class="tag">职业教育</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">19</div>
+      <div class="article-title">《中小学心理健康教育读本》正式出版发行</div>
+      <p>全套共5册覆盖小学至高中阶段，为学生心理健康教育提供标准化教材支撑，学生心理健康教育进入规范化发展阶段。</p>
+      <div class="tags"><span class="tag">心理健康</span><span class="tag">教材出版</span></div>
+    </div>
+  </div>
+
+  <!-- 四、政策速递 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon s4">📋</div>
+      <div class="section-title">四、政策速递</div>
+    </div>
+    <div class="article">
+      <div class="article-num">20</div>
+      <div class="article-title">顺义发布AI教育三年行动计划，计划建20所试点校</div>
+      <p>顺义区发布AI教育三年行动方案，计划三年内建20所试点校及特色基地，分阶段推进教师培训、课程建设与标杆打造，构建区域AI教育体系，赋能立德树人。</p>
+      <div class="tags"><span class="tag hot">🔥 区域规划</span><span class="tag">AI教育</span><span class="tag">顺义区</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">21</div>
+      <div class="article-title">十部门联合印发AI科技伦理审查办法</div>
+      <p>3月20日，工信部等十部门联合印发《人工智能科技伦理审查与服务办法（试行）》，要求建立 AI 科技伦理审查制度，强化技术手段防范伦理风险。该办法对教育领域 AI 应用的合规性具有参考意义。</p>
+      <div class="tags"><span class="tag hot">🔥 重点政策</span><span class="tag">AI伦理</span><span class="tag">合规监管</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">22</div>
+      <div class="article-title">教育部规范智能产品进校园，防范学术造假与隐私泄露</div>
+      <p>4月10日，教育部在《“人工智能+教育”行动计划》新闻发布会上表示，将持续规范智能产品进校园管理，防范学术造假、应试内卷、隐私泄露等问题，引导校园 AI 应用有序发展。</p>
+      <div class="tags"><span class="tag">AI治理</span><span class="tag">校园安全</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">23</div>
+      <div class="article-title">教育部启动高校专利转化运用攻坚行动</div>
+      <p>教育部办公厅发布通知，到2026年底形成渠道多样、主体多元、线上线下协同的供需常态化对接机制，打通高校科研成果转化"最后一公里"。</p>
+      <div class="tags"><span class="tag">专利转化</span><span class="tag">科研管理</span></div>
+    </div>
+  </div>
+
+  <!-- 五、投融资事件 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon s5">💰</div>
+      <div class="section-title">五、投融资事件</div>
+    </div>
+    <div class="article">
+      <div class="article-num">24</div>
+      <div class="article-title">千寻智能30天融资30亿，具身智能赛道持续火热</div>
+      <p>具身智能独角兽千寻智能（Spirit AI）完成新一轮10亿元融资，由顺为资本、云锋基金联合领投。加上2月完成的近20亿元融资，30天内累计融资30亿元，具身智能资本聚集效应显著。</p>
+      <div class="tags"><span class="tag hot">🔥 超级融资</span><span class="tag">具身智能</span><span class="tag">独角兽</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">25</div>
+      <div class="article-title">地瓜机器人获1.5亿美元B2轮，23天B轮累计达2.7亿美元</div>
+      <p>由地平线机器人事业部分拆组建的地瓜机器人完成1.5亿美元B2轮融资，由某零售科技巨头、Prosperity7风投基金、远景科技集团联合投资。距3月16日B1轮仅23天，B轮累计达2.7亿美元。</p>
+      <div class="tags"><span class="tag hot">🔥 大额融资</span><span class="tag">机器人</span><span class="tag">地平线分拆</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">26</div>
+      <div class="article-title">零次方机器人获超亿元融资，萌友智能ropet获千万美元A轮</div>
+      <p>零次方机器人完成超亿元融资，由国内算力龙头润泽集团领投，当前订单已破亿元。同期，萌友智能旗下AI陪伴机器人ropet完成超千万美元A轮融资，产品累计出货近2万台，主打儿童家庭场景。</p>
+      <div class="tags"><span class="tag">融资</span><span class="tag">机器人</span><span class="tag">陪伴机器人</span></div>
+    </div>
+    <div class="article">
+      <div class="article-num">27</div>
+      <div class="article-title">Mizzen Insight获近千万美元天使+轮，红杉中国种子基金领投</div>
+      <p>觅深科技旗下AI用户研究平台Mizzen Insight完成近千万美元天使+轮融资，由红杉中国种子基金领投，达晨创投、嘉程资本跟投。</p>
+      <div class="tags"><span class="tag">融资</span><span class="tag">AI研究</span><span class="tag">红杉</span></div>
+    </div>
+  </div>
+
+  <!-- 人物观点 -->
+  <div class="insight-section">
+    <div class="insight-header">
+      <div class="insight-icon person">🗣️</div>
+      <div class="insight-title">人物观点</div>
+    </div>
+    <div class="insight-body">
+      <div class="person-name">田祖荫</div>
+      <div class="person-role">教育部基础教育司司长</div>
+      <div class="quote">当前，基础教育取得的发展成就前所未有，亟须解决的问题挑战前所未有，办强办优的历史机遇前所未有……要把中小学科技教育作为革新点，把人工智能教育作为出海点，把家校社协同育人作为新增长点……</div>
+    </div>
+  </div>
+
+  <!-- 重点趋势洞察 -->
+  <div class="insight-section">
+    <div class="insight-header">
+      <div class="insight-icon trend">🔍</div>
+      <div class="insight-title">重点趋势洞察</div>
+    </div>
+    <div class="insight-body">
+      <div class="trend-text" style="margin-bottom: 12px; font-size: 28px; color: var(--primary); font-weight: 600;">从"科学教育"到"科技教育"，一字之变不简单</div>
+      <div class="trend-text">
+        随着党的二十届四中全会精神的贯彻落实，教育改革发展进入新阶段，科技教育成为服务国家创新驱动发展战略的重要路径。科学教育侧重于对客观世界的探索与认识，而科技教育则结合了科学与技术，强调认识与改造世界的统一，具有更强的应用性和实践性。
+      </div>
+      <div class="tags" style="margin-top: 14px; padding-left: 0;">
+        <span class="tag trend">📈 政策风向</span><span class="tag">科技教育</span><span class="tag">基础教育改革</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 总结分析 -->
+  <div class="summary">
+    <h3>本周总结与分析</h3>
+    <p>本周教育动态围绕四条主线：<strong>一是 AI+教育顶层文件出台。</strong>五部门联合印发《"人工智能+教育"行动计划》（4月2日印发、4月10日公布），与十部门 AI 伦理审查办法（3月20日印发）形成“鼓励创新+规范风险”的政策组合。北京“十五五”规划提出新增 20 万个学位并探索延长义务教育年限。<strong>二是具身智能融资热度持续。</strong>千寻智能 30 天内累计融资 30 亿元（4月7日新一轮 10 亿），地瓜机器人 B 轮累计 2.7 亿美元（4月8日），该赛道资本聚集效应明显。<strong>三是科技企业加速布局教育场景。</strong>Adobe 推出 AI 学习助手、Netflix 推出儿童教育应用、FF 将教育定位为 EAI 机器人核心场景，国际科技企业在教育领域的布局值得关注。<strong>四是高校改革与 AI 融合持续推进。</strong>南开强基计划新增 AI 培养方向、多所高校推进学科建设与 AI 结合，反映出高等教育对 AI 人才需求的响应。</p>
+  </div>
+
+</div>
+
+<!-- ===== QR CODE FOOTER ===== -->
+<div class="qr-footer">
+  <div class="qr-row">
+    <div class="qr-item">
+      <div class="qr-img-wrap">
+        <img src="腾讯教育公众号.png" alt="腾讯教育公众号">
+      </div>
+      <div class="qr-label">扫码关注"腾讯教育"公众号</div>
+    </div>
+    <div class="qr-item">
+      <div class="qr-img-wrap">
+        <img src="腾讯教育小程序.jpg" alt="腾讯教育小程序">
+      </div>
+      <div class="qr-label">扫码添加"腾讯教育"小程序</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

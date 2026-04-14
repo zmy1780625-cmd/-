@@ -73,7 +73,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 17px;
+    font-size: 27px;
     font-weight: 600;
     color: #1e40af;
     letter-spacing: 0.5px;
@@ -132,7 +132,7 @@
     color: #fff;
     padding: 10px 28px;
     border-radius: 24px;
-    font-size: 18px;
+    font-size: 28px;
     font-weight: 600;
     letter-spacing: 0.5px;
     margin-bottom: 20px;
@@ -140,7 +140,7 @@
   }
   /* Title */
   .hero h1 {
-    font-size: 52px;
+    font-size: 62px;
     font-weight: 800;
     color: #1e3a5f;
     letter-spacing: 3px;
@@ -150,7 +150,7 @@
   }
   /* Subtitle */
   .hero .subtitle {
-    font-size: 20px;
+    font-size: 30px;
     color: #64748b;
     font-weight: 500;
     letter-spacing: 3px;
@@ -162,7 +162,7 @@
 
   /* ===== MAIN CONTENT ===== */
   .container {
-    max-width: 920px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 32px 20px 60px;
   }
@@ -202,7 +202,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 23px;
+    font-size: 33px;
     flex-shrink: 0;
     color: #fff;
   }
@@ -211,7 +211,7 @@
   .section-icon.s3 { background: linear-gradient(135deg, #00b894, #55efc4); }
   .section-icon.s4 { background: linear-gradient(135deg, #e17055, #fab1a0); }
   .section-title {
-    font-size: 22px;
+    font-size: 32px;
     font-weight: 700;
     color: var(--primary);
     letter-spacing: 1px;
@@ -235,14 +235,14 @@
     border-radius: 7px;
     background: var(--tag-bg);
     color: var(--accent);
-    font-size: 15px;
+    font-size: 25px;
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   .article-title {
-    font-size: 18px;
+    font-size: 28px;
     font-weight: 700;
     color: var(--text);
     margin-bottom: 8px;
@@ -250,7 +250,7 @@
     line-height: 1.5;
   }
   .article p {
-    font-size: 16.5px;
+    font-size: 26.5px;
     color: var(--text-secondary);
     line-height: 1.85;
     padding-left: 34px;
@@ -263,7 +263,7 @@
     padding-left: 34px;
   }
   .tag {
-    font-size: 14px;
+    font-size: 24px;
     padding: 3px 12px;
     border-radius: 12px;
     background: var(--tag-bg);
@@ -295,7 +295,7 @@
     border-radius: 50%;
   }
   .summary h3 {
-    font-size: 22px;
+    font-size: 32px;
     font-weight: 700;
     color: var(--primary);
     margin-bottom: 16px;
@@ -313,7 +313,7 @@
     flex-shrink: 0;
   }
   .summary p {
-    font-size: 17px;
+    font-size: 27px;
     line-height: 2;
     color: var(--text-secondary);
     position: relative;
@@ -360,7 +360,7 @@
     object-fit: contain;
   }
   .qr-label {
-    font-size: 17px;
+    font-size: 27px;
     color: var(--text-secondary);
     font-weight: 500;
     letter-spacing: 0.5px;
@@ -369,11 +369,11 @@
   /* ===== RESPONSIVE ===== */
   @media (max-width: 768px) {
     .hero-topbar { padding: 10px 20px; gap: 12px; }
-    .hero-topbar .brand-logo { font-size: 15px; }
+    .hero-topbar .brand-logo { font-size: 25px; }
     .hero-body { padding: 36px 24px 40px; min-height: 180px; }
-    .hero h1 { font-size: 36px; letter-spacing: 2px; }
-    .hero .subtitle { font-size: 17px; letter-spacing: 2px; }
-    .date-pill { font-size: 16px; padding: 8px 20px; }
+    .hero h1 { font-size: 46px; letter-spacing: 2px; }
+    .hero .subtitle { font-size: 27px; letter-spacing: 2px; }
+    .date-pill { font-size: 26px; padding: 8px 20px; }
     .hero-visual { display: none; }
     .section-header { padding: 16px 20px; }
     .article { padding: 16px 20px; }
@@ -611,26 +611,26 @@
     </div>
     <div class="article">
       <div class="article-num">01</div>
-      <div class="article-title">FlexKV 省Token技术成为全球主流推理框架官方方案</div>
-      <p>腾讯云研发的大模型推理优化技术 FlexKV 正式合入 NVIDIA Dynamo、vLLM、TensorRT-LLM 三大主流推理框架官方主线。该技术通过"GPU→CPU→SSD→远程存储"四级缓存体系，将可用缓存容量扩展至GPU显存的100倍以上，结合分布式KV复用与KV感知路由，解决高并发场景下KV Cache占显存超70%、单位Token成本飙升2-3倍的痛点。全球开发者无需改造系统即可直接启用。</p>
+      <div class="article-title">FlexKV 分布式KV缓存架构合入多个开源推理框架</div>
+      <p>腾讯云主导的 FlexKV 开源项目近期合入 vLLM 等主流推理框架。该技术采用多级缓存方案，旨在扩展推理场景下的可用 KV Cache 容量，降低高并发推理时的显存压力与单位 Token 成本。开发者可在支持框架中配置启用。</p>
       <div class="tags"><span class="tag hot">🔥 开源里程碑</span><span class="tag">推理优化</span><span class="tag">KV Cache</span></div>
     </div>
     <div class="article">
       <div class="article-num">02</div>
-      <div class="article-title">腾讯混元联合Robotics X推出HY-Embodied-0.5具身智能模型</div>
-      <p>混元团队联合Robotics X发布专为具身智能定制的HY-Embodied-0.5系列模型，涵盖2B端侧轻量版（MoT架构，激活参数仅2B）和32B旗舰版（总参407B）。在22项权威评测中斩获16项SOTA，2B小模型即超越参数量更大的Qwen3-VL-4B。核心技术包括混合Transformer架构避免模态干扰、原生分辨率视觉编码器HY-ViT 2.0、以及RL+RFT的多阶段推理后训练范式，已成功应用于机器人实机控制。</p>
+      <div class="article-title">腾讯混元联合Robotics X发布具身智能模型系列</div>
+      <p>混元团队联合 Robotics X 发布面向具身智能场景的模型系列，提供 2B 端侧轻量版和 32B 旗舰版两个规格。模型采用混合 Transformer 架构与自研视觉编码器，在多项评测中表现较好。目前已在机器人实机控制场景中进行了初步验证。</p>
       <div class="tags"><span class="tag hot">🔥 开源里程碑</span><span class="tag">具身智能</span><span class="tag">混元模型</span></div>
     </div>
     <div class="article">
       <div class="article-num">03</div>
-      <div class="article-title">Agent运维可观测方案：Cloud Mate告别运维黑盒</div>
-      <p>云原生日志服务CLS发布Cloud Mate智能运维Agent，基于大语言模型与多Agent协同架构，实现对业务指标、日志、链路追踪及变更记录的四维数据综合分析。支持在告警时自动触发根因诊断，兼容CLS、Prometheus等主流监控平台一键接入，并具备持续自学习优化机制，预置云原生运维知识库与MCP服务支持，助力运维从被动响应转向主动预防。</p>
+      <div class="article-title">CLS 发布 Cloud Mate 智能运维 Agent</div>
+      <p>CLS 日志服务推出 Cloud Mate 智能运维 Agent，可对业务指标、日志、链路追踪及变更记录进行关联分析，在告警触发时辅助运维人员进行根因定位。支持 CLS、Prometheus 等监控平台接入。</p>
       <div class="tags"><span class="tag">智能运维</span><span class="tag">云原生</span><span class="tag">可观测性</span></div>
     </div>
     <div class="article">
       <div class="article-num">04</div>
-      <div class="article-title">ClawPro × Agent Storage发布"龙虾网盘"构建专属数据空间</div>
-      <p>ClawPro联合腾讯云存储Agent Storage发布"一虾一盘"功能，为每个AI智能体分配独立专属网盘空间。实现数据清晰隔离、长期留存与统一管控，解决企业级AI文件管理中数据混乱、隐私泄露等痛点，支持跨端访问与云文件一键上传备份，生成下载链接和图片预览。</p>
+      <div class="article-title">ClawPro 联合 Agent Storage 推出智能体数据空间功能</div>
+      <p>ClawPro 联合腾讯云存储 Agent Storage 推出数据空间功能，为 AI 智能体提供独立的文件存储与管理能力。支持数据隔离、跨端访问、文件上传备份及下载链接生成。</p>
       <div class="tags"><span class="tag">ClawPro</span><span class="tag">云存储</span><span class="tag">数据空间</span></div>
     </div>
   </div>
@@ -643,32 +643,32 @@
     </div>
     <div class="article">
       <div class="article-num">05</div>
-      <div class="article-title">QClaw V2大版本上线：多Agent协同、跨应用直连</div>
-      <p>QClaw V0.2.5正式发布，核心升级三大能力：多Agent协同架构支持最多3个Agent并行工作，突破单Agent上下文记忆限制；跨应用连接器实现从"内容生成"到"应用执行"闭环，两步接入腾讯文档、腾讯会议、ima等7款主流工具；业内首发"龙虾管家"安全隔离机制，以本地沙箱实时监控拦截高风险操作，提供完整审计日志。</p>
+      <div class="article-title">QClaw 新版本发布：支持多 Agent 协同与跨应用连接</div>
+      <p>QClaw 发布新版本，主要升级包括：多 Agent 协同架构支持多个 Agent 并行处理任务；跨应用连接器可对接腾讯文档、腾讯会议、ima 等内部工具；新增安全隔离机制，通过本地沙箱监控高风险操作并记录审计日志。</p>
       <div class="tags"><span class="tag hot">🔥 重大更新</span><span class="tag">多Agent</span><span class="tag">跨应用</span></div>
     </div>
     <div class="article">
       <div class="article-num">06</div>
-      <div class="article-title">LightClaw ACE——腾讯云自研AI助手正式上线</div>
-      <p>腾讯云推出自研AI助手LightClaw ACE，主打"生而为云"理念，深度依托腾讯云基础设施构建差异化优势。产品采用三层记忆管理、智能上下文压缩和极简架构实现低资源消耗与毫秒级响应，内置ToolGuard安全机制与云原生技能，通过轻量应用服务器5分钟零门槛部署，支持DeepSeek、OpenAI等主流大模型接入。</p>
+      <div class="article-title">腾讯云推出 AI 助手 LightClaw ACE</div>
+      <p>腾讯云推出 AI 助手 LightClaw ACE，面向云上场景设计。具备三层记忆管理、上下文压缩等能力，内置安全机制与云原生技能，可通过轻量应用服务器快速部署，支持接入 DeepSeek、OpenAI 等大模型。</p>
       <div class="tags"><span class="tag">LightClaw</span><span class="tag">AI助手</span><span class="tag">云原生</span></div>
     </div>
     <div class="article">
       <div class="article-num">07</div>
-      <div class="article-title">QBotClaw：说句话就能干活的AI浏览器来了</div>
-      <p>国内首个浏览器级AI智能体QBotClaw（昵称"龙虾"）深度集成QQ浏览器电脑端，通过自然语音指令实现跨网页数据抓取、自动比价、多平台发帖等复杂操作。核心技术包括精准元素定位、深度上下文记忆、微信Clawbot跨端远程控制、三维安全隔离机制，并完全兼容OpenClaw技能生态，QQ浏览器AI能力已累计服务超1.3亿用户。</p>
+      <div class="article-title">QQ 浏览器集成 AI 智能体能力</div>
+      <p>QQ 浏览器电脑端深度集成 AI 智能体能力，支持通过语音或文字指令完成网页数据抓取、比价、内容发布等操作。具备元素定位、上下文记忆及安全隔离等能力。QQ 浏览器 AI 功能累计服务用户超 1.3 亿。</p>
       <div class="tags"><span class="tag">浏览器AI</span><span class="tag">语音交互</span><span class="tag">自动化</span></div>
     </div>
     <div class="article">
       <div class="article-num">08</div>
-      <div class="article-title">Buddy全系产品内置模型升级至GLM-5.1</div>
-      <p>WorkBuddy、CodeBuddy IDE、插件、CLI等Buddy全系产品内置模型已全面升级至GLM-5.1。该模型在SWE-bench Pro、Artificial Analysis等全球权威基准测试中斩获开源模型与国产模型双料第一，支持单次任务自主持续工作长达8小时，具备完整的"规划→执行→纠错→交付"全流程闭环能力。</p>
+      <div class="article-title">Buddy 系列产品模型升级</div>
+      <p>WorkBuddy、CodeBuddy IDE、插件及 CLI 等 Buddy 系列产品的内置模型已升级至新版本。新版模型在代码生成、任务规划等基准测试中表现提升，支持较长任务的自主执行。</p>
       <div class="tags"><span class="tag hot">🔥 模型升级</span><span class="tag">GLM-5.1</span><span class="tag">CodeBuddy</span></div>
     </div>
     <div class="article">
       <div class="article-num">09</div>
-      <div class="article-title">乐享支持自定义Skills：让知识库Agent发挥专业技能</div>
-      <p>腾讯乐享知识库上线自定义Skills功能，企业管理员可上传Zip格式的技能包（≤50MB），全公司员工即可在Agent模式下用自然语言调用自定义技能。零代码配置、两步完成部署，支持热更新迭代和跨端使用，实现"数据导入→Agent分析→报告产出→知识沉淀"的私有知识复利闭环。</p>
+      <div class="article-title">乐享知识库上线自定义 Skills 功能</div>
+      <p>腾讯乐享知识库新增自定义 Skills 功能，管理员可上传技能包（Zip 格式，≤50MB），员工在 Agent 模式下可通过自然语言调用。支持热更新与跨端使用。</p>
       <div class="tags"><span class="tag">乐享</span><span class="tag">自定义Skills</span><span class="tag">知识库</span></div>
     </div>
   </div>
@@ -681,25 +681,25 @@
     </div>
     <div class="article">
       <div class="article-num">10</div>
-      <div class="article-title">TAPD NPC：无需安装小龙虾，专属AI项目管理助手</div>
-      <p>TAPD推出内嵌式AI项目管理助手NPC，支持异步多线程后台执行。七大核心功能涵盖需求智能拆分（从1-2小时缩至10分钟）、依赖与冲突检测、验收标准自动生成、进度真伪审计、智能评论激励、工时资源分析、自动化周报月报生成。综合效率提升超60%，每日站会准备从20分钟缩至2分钟，周报撰写从1-2小时缩至5分钟。</p>
+      <div class="article-title">TAPD 推出内嵌式 AI 项目管理助手</div>
+      <p>TAPD 推出内嵌式 AI 项目管理助手 NPC，支持异步后台执行。功能包括需求拆分、依赖冲突检测、验收标准生成、进度审计、工时分析、自动化周报月报生成等。据官方数据，部分场景效率有较明显提升。</p>
       <div class="tags"><span class="tag hot">🔥 效率革命</span><span class="tag">TAPD</span><span class="tag">项目管理</span></div>
     </div>
     <div class="article">
       <div class="article-num">11</div>
-      <div class="article-title">CodeBuddy + CloudQ：共筑云上智能巡检新体验</div>
+      <div class="article-title">CodeBuddy 集成 CloudQ 技能实现自动化巡检</div>
       <p>CodeBuddy集成CloudQ技能实现自动化云上巡检治理。用户通过自然语言设定定时任务（如"每周一早9点发巡检报告"），系统自动拉取监控数据、生成可视化报告并推送群聊。支持STS或AK/SK授权，AI可精准捕捉接口响应时间增长15%等潜在风险，传统20分钟人工巡检流程实现全自动化。</p>
       <div class="tags"><span class="tag">CodeBuddy</span><span class="tag">智能巡检</span><span class="tag">自动化运维</span></div>
     </div>
     <div class="article">
       <div class="article-num">12</div>
-      <div class="article-title">腾讯会议AI能力赋能同桌教育：2人完成2万节课/月质检</div>
+      <div class="article-title">腾讯会议 AI 能力赋能同桌教育课程质检</div>
       <p>在线教育机构同桌教育借助腾讯会议AI能力实现100%课程质检覆盖。核心技术包括实时语音转文字集成教师端、课后AI自动质检多维度异常扫描、AI小助手Pro支持自然语言分析课堂质量，以及智能章节定位与会议数据API可视化预警。2名质检人员即可完成月均2万节课的精查工作，外教从"打字速记"解放为互动"教练"。</p>
       <div class="tags"><span class="tag">腾讯会议</span><span class="tag">AI质检</span><span class="tag">教育场景</span></div>
     </div>
     <div class="article">
       <div class="article-num">13</div>
-      <div class="article-title">腾讯问卷"签署"功能上线：填写+签约一步到位</div>
+      <div class="article-title">腾讯问卷联合电子签推出签署功能</div>
       <p>腾讯问卷联合腾讯电子签推出"签署"功能，将信息采集与合同签署合二为一。底层打通问卷数据与电子合同数据映射，采用实名认证（人脸识别）确保签署主体真实，系统自动生成具备法律效力的签署凭证PDF。传统5步流程压缩为2步，覆盖活动报名、业主投票、满意度评价、入职登记等4大典型场景。</p>
       <div class="tags"><span class="tag">腾讯问卷</span><span class="tag">电子签</span><span class="tag">流程优化</span></div>
     </div>
@@ -714,25 +714,25 @@
     <div class="article">
       <div class="article-num">14</div>
       <div class="article-title">微信元宝新增长文与文件总结功能</div>
-      <p>微信内置AI助手"元宝"上线长文与文件快速总结功能。移动端长按、电脑端右上角一键即可触发，几秒内提炼核心结论和关键数据。支持30余种文件格式解析，涵盖PDF、Office全家桶、JSON/YAML等数据格式、以及C/Java/Python/Go等十余种编程语言代码文件，并支持基于上下文的连续追问。</p>
+      <p>微信内置 AI 助手"元宝"新增长文与文件快速总结功能，移动端长按、电脑端点击即可触发。支持 PDF、Office、JSON、代码文件等多种格式解析，可基于上下文进行追问。</p>
       <div class="tags"><span class="tag">元宝</span><span class="tag">微信</span><span class="tag">文件总结</span></div>
     </div>
     <div class="article">
       <div class="article-num">15</div>
-      <div class="article-title">ima接入GLM-5.1模型，全端同步升级</div>
-      <p>智能助手ima在GLM-5.1发布次日即完成全端接入，覆盖手机、电脑、小程序三大终端。升级后在语义理解、生成多样性及准确度方面均获提升，实现模型热切换快速迭代能力，用户可灵活选择GLM-5.1等模型满足不同场景需求。</p>
+      <div class="article-title">ima 接入新版模型，覆盖多端</div>
+      <p>智能助手 ima 完成新版模型接入，覆盖手机、电脑、小程序三端。升级后在语义理解与生成质量方面有所提升，支持模型热切换。</p>
       <div class="tags"><span class="tag">ima</span><span class="tag">GLM-5.1</span><span class="tag">全端覆盖</span></div>
     </div>
     <div class="article">
       <div class="article-num">16</div>
-      <div class="article-title">ima 2.4.6更新：平板PDF对照翻译、按住说话、标签页预览</div>
-      <p>ima迎来三大跨端体验升级：平板端新增PDF对照翻译功能，支持21种语言左右分屏对照、段落级锚点映射与同步高亮，可导出翻译结果；移动端新增长按语音转录，省去点击输入框步骤优化单手操作；PC端新增标签页Hover预览，鼠标悬停实时展示页面缩略图提升多任务寻页效率。</p>
+      <div class="article-title">ima 新增平板 PDF 翻译、语音转录等功能</div>
+      <p>ima 新增多项功能：平板端支持 PDF 对照翻译（多语言左右分屏对照、可导出）；移动端新增长按语音转录；PC 端新增标签页悬停预览。</p>
       <div class="tags"><span class="tag">ima</span><span class="tag">PDF翻译</span><span class="tag">跨端体验</span></div>
     </div>
     <div class="article">
       <div class="article-num">17</div>
-      <div class="article-title">腾讯问卷Skill上线：自然语言一站式搞定问卷全流程</div>
-      <p>腾讯问卷正式接入AI助手推出Skill功能，用户通过自然语言对话即可完成问卷创建、修改和数据分析全流程。AI可自动完成题型选择、选项设计与逻辑设置，支持精准语义改写与自动化数据归纳分析。用户复制Skill口令发送给AI助手即可一键配置，无需切换工具。</p>
+      <div class="article-title">腾讯问卷推出 AI Skill 功能</div>
+      <p>腾讯问卷接入 AI 助手推出 Skill 功能，用户可通过自然语言对话完成问卷创建、修改和数据分析。AI 辅助题型选择、选项设计及逻辑设置，支持语义改写与数据归纳分析。</p>
       <div class="tags"><span class="tag">腾讯问卷</span><span class="tag">AI对话</span><span class="tag">Skill</span></div>
     </div>
   </div>
@@ -740,7 +740,7 @@
   <!-- 总结分析 -->
   <div class="summary">
     <h3>本周总结与分析</h3>
-    <p>本周技术动态呈现出三大趋势：<strong>第一，Agent生态全面加速。</strong>QClaw V2的多Agent协同与跨应用直连、TAPD NPC的异步多线程项目管理、LightClaw ACE的云原生AI助手，标志着腾讯Claw系列正在从单点工具演进为覆盖办公、开发、运维、浏览器的完整Agent矩阵。<strong>第二，模型与推理技术持续突破。</strong>FlexKV合入全球三大推理框架是腾讯在AI基础设施层面的里程碑式贡献；GLM-5.1在Buddy全系和ima的快速落地展示了模型迭代到产品化的高效链路；混元HY-Embodied-0.5在具身智能领域的16项SOTA则开辟了新的技术前沿。<strong>第三，"AI+行业"深度融合。</strong>腾讯会议AI赋能教育质检实现2人覆盖2万节课/月、腾讯问卷签署功能打通业务流程最后一公里、乐享自定义Skills让企业知识库真正"活"起来——AI正在从技术能力转变为可规模化复制的业务生产力。</p>
+    <p>本周技术动态围绕三条主线展开：<strong>一是 Agent 能力持续拓展。</strong>QClaw 多 Agent 协同、TAPD NPC 项目管理助手、LightClaw ACE 云原生助手等产品的更新，表明腾讯正在构建覆盖办公、开发、运维、浏览器等场景的 Agent 产品矩阵。<strong>二是模型与推理基础设施稳步推进。</strong>FlexKV 合入多个开源推理框架，降低推理成本；新版模型在 Buddy 全系及 ima 中快速落地；混元具身智能模型面向机器人场景展开验证。<strong>三是 AI 与行业场景进一步结合。</strong>腾讯会议 AI 辅助教育质检、腾讯问卷签署功能整合信息采集与合同流程、乐享自定义 Skills 扩展知识库 Agent 能力，反映出 AI 正从技术工具向业务生产力转化。</p>
   </div>
 
 </div>
