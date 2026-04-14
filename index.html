@@ -37,10 +37,10 @@
   .hero::before {
     content: '';
     position: absolute;
-    top: -80px;
-    right: -60px;
-    width: 400px;
-    height: 400px;
+    top: -90px;
+    right: -70px;
+    width: 410px;
+    height: 410px;
     background: radial-gradient(circle, rgba(59,130,246,0.16) 0%, rgba(59,130,246,0.06) 40%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
@@ -48,10 +48,10 @@
   .hero::after {
     content: '';
     position: absolute;
-    bottom: -100px;
-    left: -80px;
-    width: 350px;
-    height: 350px;
+    bottom: -110px;
+    left: -90px;
+    width: 360px;
+    height: 360px;
     background: radial-gradient(circle, rgba(96,165,250,0.12) 0%, transparent 60%);
     border-radius: 50%;
     pointer-events: none;
@@ -60,35 +60,35 @@
   .hero-topbar {
     display: flex;
     align-items: center;
-    padding: 14px 40px;
+    padding: 24px 50px;
     background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(59,130,246,0.08);
-    gap: 20px;
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    border-bottom: 11px solid rgba(59,130,246,0.08);
+    gap: 30px;
     position: relative;
     z-index: 10;
   }
   .hero-topbar .brand-logo {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 27px;
+    gap: 18px;
+    font-size: 37px;
     font-weight: 600;
     color: #1e40af;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.15px;
   }
   .hero-topbar .brand-logo .icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
+    width: 42px;
+    height: 42px;
+    border-radius: 18px;
     overflow: hidden;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, #3b82f6, #60a5fa);
-    box-shadow: 0 2px 8px rgba(59,130,246,0.25);
+    box-shadow: 0 12px 18px rgba(59,130,246,0.25);
   }
   .hero-topbar .brand-logo .icon img {
     width: 100%;
@@ -96,8 +96,8 @@
     object-fit: contain;
   }
   .hero-topbar .brand-sep {
-    width: 1px;
-    height: 20px;
+    width: 11px;
+    height: 30px;
     background: rgba(59,130,246,0.2);
   }
   /* Hero body */
@@ -105,24 +105,24 @@
     position: relative;
     display: flex;
     align-items: center;
-    padding: 56px 60px 60px;
-    min-height: 240px;
+    padding: 66px 70px 70px;
+    min-height: 250px;
   }
   /* Right side 3D glass decoration */
   .hero-visual {
     position: absolute;
-    right: 20px;
+    right: 30px;
     top: 50%;
     transform: translateY(-50%);
-    width: 340px;
-    height: 300px;
+    width: 350px;
+    height: 310px;
     pointer-events: none;
   }
   /* Left content */
   .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 520px;
+    max-width: 530px;
   }
   /* Date pill — glass style */
   .date-pill {
@@ -130,59 +130,59 @@
     align-items: center;
     background: linear-gradient(135deg, #3b82f6, #60a5fa);
     color: #fff;
-    padding: 10px 28px;
-    border-radius: 24px;
-    font-size: 28px;
+    padding: 20px 38px;
+    border-radius: 34px;
+    font-size: 38px;
     font-weight: 600;
-    letter-spacing: 0.5px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 20px rgba(59,130,246,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+    letter-spacing: 0.15px;
+    margin-bottom: 30px;
+    box-shadow: 0 14px 30px rgba(59,130,246,0.3), inset 0 11px 0 rgba(255,255,255,0.2);
   }
   /* Title */
   .hero h1 {
-    font-size: 62px;
+    font-size: 72px;
     font-weight: 800;
     color: #1e3a5f;
-    letter-spacing: 3px;
-    margin-bottom: 14px;
+    letter-spacing: 13px;
+    margin-bottom: 24px;
     line-height: 1.1;
-    text-shadow: 0 2px 20px rgba(59,130,246,0.1);
+    text-shadow: 0 12px 30px rgba(59,130,246,0.1);
   }
   /* Subtitle */
   .hero .subtitle {
-    font-size: 30px;
+    font-size: 40px;
     color: #64748b;
     font-weight: 500;
-    letter-spacing: 3px;
+    letter-spacing: 13px;
   }
   .hero .subtitle span {
-    margin: 0 6px;
+    margin: 0 16px;
     color: #94a3b8;
   }
 
   /* ===== MAIN CONTENT ===== */
   .container {
-    max-width: 1200px;
+    max-width: 1210px;
     margin: 0 auto;
-    padding: 32px 20px 60px;
+    padding: 42px 30px 70px;
   }
 
   /* ===== SECTION ===== */
   .section {
-    margin-bottom: 28px;
+    margin-bottom: 38px;
     background: var(--card);
-    border-radius: 14px;
+    border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(26,58,92,0.06);
-    border: 1px solid var(--border);
+    box-shadow: 0 12px 18px rgba(26,58,92,0.06);
+    border: 11px solid var(--border);
   }
   .section-header {
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 20px 28px;
+    gap: 24px;
+    padding: 30px 38px;
     background: linear-gradient(90deg, var(--section-bg) 0%, #fff 100%);
-    border-bottom: 2px solid var(--accent);
+    border-bottom: 12px solid var(--accent);
     position: relative;
   }
   .section-header::before {
@@ -191,18 +191,18 @@
     left: 0;
     top: 0;
     bottom: 0;
-    width: 4px;
+    width: 14px;
     background: linear-gradient(180deg, var(--accent), var(--accent-light));
-    border-radius: 0 2px 2px 0;
+    border-radius: 0 12px 12px 0;
   }
   .section-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
+    width: 52px;
+    height: 52px;
+    border-radius: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 33px;
+    font-size: 43px;
     flex-shrink: 0;
     color: #fff;
   }
@@ -211,16 +211,16 @@
   .section-icon.s3 { background: linear-gradient(135deg, #00b894, #55efc4); }
   .section-icon.s4 { background: linear-gradient(135deg, #e17055, #fab1a0); }
   .section-title {
-    font-size: 32px;
+    font-size: 42px;
     font-weight: 700;
     color: var(--primary);
-    letter-spacing: 1px;
+    letter-spacing: 11px;
   }
 
   /* ===== ARTICLE CARD ===== */
   .article {
-    padding: 20px 28px;
-    border-bottom: 1px solid #f0f4f8;
+    padding: 30px 38px;
+    border-bottom: 11px solid #f0f4f8;
     transition: background 0.15s;
     position: relative;
   }
@@ -228,44 +228,44 @@
   .article:hover { background: #f9fbfe; }
   .article-num {
     position: absolute;
-    left: 28px;
-    top: 22px;
-    width: 24px;
-    height: 24px;
-    border-radius: 7px;
+    left: 38px;
+    top: 32px;
+    width: 34px;
+    height: 34px;
+    border-radius: 17px;
     background: var(--tag-bg);
     color: var(--accent);
-    font-size: 25px;
+    font-size: 35px;
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   .article-title {
-    font-size: 28px;
+    font-size: 38px;
     font-weight: 700;
     color: var(--text);
-    margin-bottom: 8px;
-    padding-left: 34px;
+    margin-bottom: 18px;
+    padding-left: 44px;
     line-height: 1.5;
   }
   .article p {
-    font-size: 26.5px;
+    font-size: 26.15px;
     color: var(--text-secondary);
     line-height: 1.85;
-    padding-left: 34px;
+    padding-left: 44px;
   }
   .article .tags {
     display: flex;
-    gap: 6px;
+    gap: 16px;
     flex-wrap: wrap;
-    margin-top: 10px;
-    padding-left: 34px;
+    margin-top: 20px;
+    padding-left: 44px;
   }
   .tag {
-    font-size: 24px;
-    padding: 3px 12px;
-    border-radius: 12px;
+    font-size: 34px;
+    padding: 13px 22px;
+    border-radius: 22px;
     background: var(--tag-bg);
     color: var(--tag-text);
     font-weight: 500;
@@ -278,42 +278,42 @@
   /* ===== SUMMARY ===== */
   .summary {
     background: linear-gradient(135deg, #e8eef6 0%, #dce6f0 50%, #cfdae8 100%);
-    border-radius: 14px;
-    padding: 32px;
+    border-radius: 24px;
+    padding: 42px;
     position: relative;
     overflow: hidden;
-    border: 1px solid var(--border);
+    border: 11px solid var(--border);
   }
   .summary::after {
     content: '';
     position: absolute;
-    top: -40px;
-    right: -40px;
-    width: 160px;
-    height: 160px;
+    top: -50px;
+    right: -50px;
+    width: 170px;
+    height: 170px;
     background: linear-gradient(135deg, rgba(47,168,224,0.12), rgba(91,197,242,0.08));
     border-radius: 50%;
   }
   .summary h3 {
-    font-size: 32px;
+    font-size: 42px;
     font-weight: 700;
     color: var(--primary);
-    margin-bottom: 16px;
+    margin-bottom: 26px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    letter-spacing: 1px;
+    gap: 20px;
+    letter-spacing: 11px;
   }
   .summary h3::before {
     content: '';
-    width: 4px;
-    height: 22px;
+    width: 14px;
+    height: 32px;
     background: linear-gradient(180deg, var(--accent), var(--accent-light));
-    border-radius: 2px;
+    border-radius: 12px;
     flex-shrink: 0;
   }
   .summary p {
-    font-size: 27px;
+    font-size: 37px;
     line-height: 2;
     color: var(--text-secondary);
     position: relative;
@@ -327,32 +327,32 @@
   /* ===== QR CODE FOOTER ===== */
   .qr-footer {
     background: #e8eef4;
-    padding: 40px 20px 44px;
+    padding: 50px 30px 54px;
     text-align: center;
   }
   .qr-row {
     display: flex;
     justify-content: center;
-    gap: 60px;
+    gap: 70px;
     flex-wrap: wrap;
   }
   .qr-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
+    gap: 24px;
   }
   .qr-img-wrap {
-    width: 160px;
-    height: 160px;
+    width: 170px;
+    height: 170px;
     background: #fff;
-    border-radius: 14px;
+    border-radius: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 10px rgba(26,58,92,0.08);
+    box-shadow: 0 12px 20px rgba(26,58,92,0.08);
     overflow: hidden;
-    padding: 10px;
+    padding: 20px;
   }
   .qr-img-wrap img {
     width: 100%;
@@ -360,25 +360,25 @@
     object-fit: contain;
   }
   .qr-label {
-    font-size: 27px;
+    font-size: 37px;
     color: var(--text-secondary);
     font-weight: 500;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.15px;
   }
 
   /* ===== RESPONSIVE ===== */
-  @media (max-width: 768px) {
-    .hero-topbar { padding: 10px 20px; gap: 12px; }
-    .hero-topbar .brand-logo { font-size: 25px; }
-    .hero-body { padding: 36px 24px 40px; min-height: 180px; }
-    .hero h1 { font-size: 46px; letter-spacing: 2px; }
-    .hero .subtitle { font-size: 27px; letter-spacing: 2px; }
-    .date-pill { font-size: 26px; padding: 8px 20px; }
+  @media (max-width: 778px) {
+    .hero-topbar { padding: 20px 30px; gap: 22px; }
+    .hero-topbar .brand-logo { font-size: 35px; }
+    .hero-body { padding: 46px 34px 50px; min-height: 190px; }
+    .hero h1 { font-size: 56px; letter-spacing: 12px; }
+    .hero .subtitle { font-size: 37px; letter-spacing: 12px; }
+    .date-pill { font-size: 36px; padding: 18px 30px; }
     .hero-visual { display: none; }
-    .section-header { padding: 16px 20px; }
-    .article { padding: 16px 20px; }
-    .article-num { left: 20px; top: 18px; }
-    .summary { padding: 24px 20px; }
+    .section-header { padding: 26px 30px; }
+    .article { padding: 26px 30px; }
+    .article-num { left: 30px; top: 28px; }
+    .summary { padding: 34px 30px; }
   }
 </style>
 </head>
